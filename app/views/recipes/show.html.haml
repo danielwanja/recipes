@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @recipe.user.twitter
+%p
+  %b Title:
+  = @recipe.title
+%p
+  %b Description:
+  = @recipe.description
+
+= link_to 'Edit', edit_user_recipe_path(@user, @recipe)
+\|
+= link_to 'Back', user_recipes_path(@user)

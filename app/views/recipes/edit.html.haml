@@ -1,0 +1,7 @@
+%h1 Editing recipe
+
+= render 'form'
+
+= link_to 'Show', [@user, @recipe]
+\|
+= link_to 'Back', user_recipes_path(@user)

@@ -1,4 +1,15 @@
 Recipes::Application.routes.draw do
+
+  resources :users do
+    resources :recipes do
+      resources :steps
+      resources :ingredients
+    end
+  end
+
+  resources :recipes  # Show all recipes
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

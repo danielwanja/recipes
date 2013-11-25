@@ -1,1 +1,38 @@
 %h1 Welcome to the best cookbook site EVER!
+
+%h2 Recipies
+
+- @recipes = Recipe.all
+%table
+  %tr
+    %th User
+    %th Title
+    %th Description
+    %th
+    %th
+    %th
+
+  - @recipes.each do |recipe|
+    %tr
+      %td= recipe.user_id
+      %td= recipe.title
+      %td= recipe.description
+      %td= link_to 'Show', [recipe.user, recipe]
+
+
+%h1 Users
+
+- @users = User.all
+%table
+  %tr
+    %th Twitter
+    %th
+    %th
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= user.twitter
+      %td= link_to 'Recipies', user_recipes_path(user)
+      %td= link_to 'Show', user
