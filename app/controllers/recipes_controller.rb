@@ -1,5 +1,5 @@
 class RecipesController < InheritedResources::Base
-  belongs_to :user
+  belongs_to :user, :optional => true
 
   protected
   def permitted_params
