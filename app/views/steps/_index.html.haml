@@ -1,6 +1,5 @@
 %table.table.table-striped.table-bordered
   %tr
-    %th Recipe
     %th Position
     %th Description
     %th
@@ -8,7 +7,6 @@
 
   - @steps.each do |step|
     %tr
-      %td= step.recipe_id
       %td= step.position
       %td= step.description
       %td= link_to 'Edit', edit_user_recipe_step_path(step.recipe.user, step.recipe, step)
