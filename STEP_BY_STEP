@@ -1,0 +1,184 @@
+This are the step by step instructions on how we created this base example.
+
+# 1 Generate scaffolding
+
+rails generate scaffold user twitter
+rails generate scaffold recipe user_id:integer title description:text
+rails generate scaffold ingredient recipe_id:integer amount:string  description:string
+rails generate scaffold step recipe_id:integer position:integer description:text
+
+# 2 Create associations for the model
+
+class User < ActiveRecord::Base
+  has_many :recipes
+end
+
+class Recipe < ActiveRecord::Base
+  belongs_to :user
+  has_many :ingredients
+  has_many :steps
+end
+
+class Ingredient < ActiveRecord::Base
+  belongs_to :recipe
+end
+
+class Step < ActiveRecord::Base
+  belongs_to :recipe
+end
+
+# 3 Seed Data
+
+see db/seed.rb
+
+user = User.create(twitter: 'danielwanja')
+# From http://allrecipes.com/recipe/cheese-fondue/
+recipe = user.recipes.create(title: "cheese fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe")
+
+recipe.ingredients.create(amount: "1"   , description: "cup dry white wine" )
+recipe.ingredients.create(amount: "1/2" , description: "pound shredded Swiss cheese" )
+recipe.ingredients.create(amount: "1/2" , description: "pound shredded Gruyere cheese" )
+recipe.ingredients.create(amount: "2"   , description: "tablespoons all-purpose flour" )
+recipe.ingredients.create(amount: "1/4" , description: "teaspoon salt" )
+recipe.ingredients.create(amount: "1/4" , description: "teaspoon ground nutmeg" )
+recipe.ingredients.create(amount: "1"   , description: "(1 pound) loaf French bread, cut into 1 inch cubes" )
+
+recipe.steps.create(position: 1, description: "Simmer wine in fondue pot.")
+recipe.steps.create(position: 2, description: "Add Swiss cheese, Gruyere cheese, 1/4 pound at a time.")
+recipe.steps.create(position: 3, description: "Stir after each addition of cheese until melted.")
+recipe.steps.create(position: 4, description: "Stir in flour.")
+recipe.steps.create(position: 5, description: "When all the cheese has melted, stir in salt and nutmeg.")
+recipe.steps.create(position: 6, description: "Serve with cut-up French bread.")
+
+...
+
+
+# 4 Nest routes
+
+  resources :users do
+    resources :recipes do
+      resources :steps
+      resources :ingredients
+    end
+  end
+
+  resources :recipes  # Show all recipes
+
+Look at your new routes
+
+$ rake routes
+
+                     Prefix Verb   URI Pattern                                                       Controller#Action
+          user_recipe_steps GET    /users/:user_id/recipes/:recipe_id/steps(.:format)                steps#index
+                            POST   /users/:user_id/recipes/:recipe_id/steps(.:format)                steps#create
+       new_user_recipe_step GET    /users/:user_id/recipes/:recipe_id/steps/new(.:format)            steps#new
+      edit_user_recipe_step GET    /users/:user_id/recipes/:recipe_id/steps/:id/edit(.:format)       steps#edit
+           user_recipe_step GET    /users/:user_id/recipes/:recipe_id/steps/:id(.:format)            steps#show
+                            PATCH  /users/:user_id/recipes/:recipe_id/steps/:id(.:format)            steps#update
+                            PUT    /users/:user_id/recipes/:recipe_id/steps/:id(.:format)            steps#update
+                            DELETE /users/:user_id/recipes/:recipe_id/steps/:id(.:format)            steps#destroy
+    user_recipe_ingredients GET    /users/:user_id/recipes/:recipe_id/ingredients(.:format)          ingredients#index
+                            POST   /users/:user_id/recipes/:recipe_id/ingredients(.:format)          ingredients#create
+ new_user_recipe_ingredient GET    /users/:user_id/recipes/:recipe_id/ingredients/new(.:format)      ingredients#new
+edit_user_recipe_ingredient GET    /users/:user_id/recipes/:recipe_id/ingredients/:id/edit(.:format) ingredients#edit
+     user_recipe_ingredient GET    /users/:user_id/recipes/:recipe_id/ingredients/:id(.:format)      ingredients#show
+                            PATCH  /users/:user_id/recipes/:recipe_id/ingredients/:id(.:format)      ingredients#update
+                            PUT    /users/:user_id/recipes/:recipe_id/ingredients/:id(.:format)      ingredients#update
+                            DELETE /users/:user_id/recipes/:recipe_id/ingredients/:id(.:format)      ingredients#destroy
+               user_recipes GET    /users/:user_id/recipes(.:format)                                 recipes#index
+                            POST   /users/:user_id/recipes(.:format)                                 recipes#create
+            new_user_recipe GET    /users/:user_id/recipes/new(.:format)                             recipes#new
+           edit_user_recipe GET    /users/:user_id/recipes/:id/edit(.:format)                        recipes#edit
+                user_recipe GET    /users/:user_id/recipes/:id(.:format)                             recipes#show
+                            PATCH  /users/:user_id/recipes/:id(.:format)                             recipes#update
+                            PUT    /users/:user_id/recipes/:id(.:format)                             recipes#update
+                            DELETE /users/:user_id/recipes/:id(.:format)                             recipes#destroy
+                      users GET    /users(.:format)                                                  users#index
+                            POST   /users(.:format)                                                  users#create
+                   new_user GET    /users/new(.:format)                                              users#new
+                  edit_user GET    /users/:id/edit(.:format)                                         users#edit
+                       user GET    /users/:id(.:format)                                              users#show
+                            PATCH  /users/:id(.:format)                                              users#update
+                            PUT    /users/:id(.:format)                                              users#update
+                            DELETE /users/:id(.:format)                                              users#destroy
+                    recipes GET    /recipes(.:format)                                                recipes#index
+                            POST   /recipes(.:format)                                                recipes#create
+                 new_recipe GET    /recipes/new(.:format)                                            recipes#new
+                edit_recipe GET    /recipes/:id/edit(.:format)                                       recipes#edit
+                     recipe GET    /recipes/:id(.:format)                                            recipes#show
+                            PATCH  /recipes/:id(.:format)                                            recipes#update
+                            PUT    /recipes/:id(.:format)                                            recipes#update
+                            DELETE /recipes/:id(.:format)                                            recipes#destroy
+                       root GET    /                                                                 home#index
+
+
+# 5 Nest controllers
+
+Note we are using inherited resources.
+See https://github.com/josevalim/inherited_resources
+And http://www.petekeen.net/dry-your-rails-crud-with-simple-form-and-inherited-resources
+And http://railscasts.com/episodes/230-inherited-resources
+
+Nest controllers accordingly
+
+class UsersController < InheritedResources::Base
+  protected
+  def permitted_params
+    params.permit(user: [:twitter])
+  end
+end
+
+class RecipesController < InheritedResources::Base
+  belongs_to :user, :optional => true
+
+  protected
+  def permitted_params
+    params.permit(recipe: [:title, :description])
+  end
+end
+
+class IngredientsController < InheritedResources::Base
+  nested_belongs_to :user, :recipe
+  actions :all, :except => [:show]
+
+  protected
+  def permitted_params
+    params.permit(ingredient: [:amount, :description])
+  end
+end
+
+class StepsController < InheritedResources::Base
+  nested_belongs_to :user, :recipe
+  actions :all, :except => [:show]
+
+  protected
+  def permitted_params
+    params.permit(ingredient: [:position, :description])
+  end
+end
+
+
+# 6 Removed controller tests
+
+Well, we should adapt our controller tests to accomodate the nested routes.
+
+# 7 Adapt View path to nested routes.
+
+Adapt all path to their nested routes
+
+For example
+
+  = link_to 'New Recipe', new_recipe_path
+
+becomes
+
+  = link_to 'New Recipe', new_user_recipe_path(@user)
+
+And link_to 'Show', recipe becomes link_to 'Show', [recipe.user, recipe]
+
+edit_recipe_path(recipe) | edit_user_recipe_path(recipe.user, recipe)
+
+# 9 Add some Twitter Bootstrap styles and reorganize UI
+
+Moved the ingredients and steps into Twitter bootstrap tabs as per http://getbootstrap.com/javascript/#tabs
+
