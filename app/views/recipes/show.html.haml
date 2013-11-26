@@ -12,9 +12,9 @@
 
 %ul.nav.nav-tabs
   %li.active
-    %a{"data-toggle" => "tab", href: "#ingredients"} Ingredients
+    %a{"data-toggle" => "tab", href: "#ingredients"} Ingredients (#{@recipe.ingredients.length})
   %li
-    %a{"data-toggle" => "tab", href: "#steps"} Steps
+    %a{"data-toggle" => "tab", href: "#steps"} Steps (#{@recipe.steps.length})
 
 .tab-content
   #ingredients.tab-pane.active
