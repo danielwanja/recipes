@@ -7,13 +7,10 @@
           %li= msg
 
   .field
-    = f.label :recipe_id
-    = f.number_field :recipe_id
-  .field
     = f.label :amount
-    = f.text_field :amount
+    = f.text_field :amount, class: "form-control"
   .field
     = f.label :description
-    = f.text_field :description
+    = f.text_field :description, class: "form-control"
   .actions
     = f.submit 'Save'

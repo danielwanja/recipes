@@ -10,6 +10,16 @@
   %b Description:
   = @recipe.description
 
-= link_to 'Edit', edit_user_recipe_path(@user, @recipe)
+%h2 Ingredients
+- @ingredients = @recipe.ingredients
+= render :partial => 'ingredients/index'
+
+%h2 Steps
+
+- @steps = @recipe.steps
+= render :partial => 'steps/index'
+
+%br
+= link_to 'Edit', edit_user_recipe_path(@recipe.user, @recipe)
 \|
 = link_to 'Back', user_recipes_path(@user)

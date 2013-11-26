@@ -2,6 +2,4 @@
 
 = render 'form'
 
-= link_to 'Show', @step
-\|
-= link_to 'Back', steps_path
+= link_to 'Back', user_recipe_steps_path(@recipe.user, @recipe)

@@ -3,13 +3,11 @@
 %h2 Recipies
 
 - @recipes = Recipe.all
-%table
+%table.table.table-striped.table-bordered
   %tr
     %th User
     %th Title
     %th Description
-    %th
-    %th
     %th
 
   - @recipes.each do |recipe|
@@ -23,11 +21,9 @@
 %h2 Users
 
 - @users = User.all
-%table
+%table.table.table-striped.table-bordered
   %tr
     %th Twitter
-    %th
-    %th
     %th
     %th
 

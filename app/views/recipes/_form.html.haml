@@ -5,12 +5,11 @@
       %ul
         - @recipe.errors.full_messages.each do |msg|
           %li= msg
-
   .field
     = f.label :title
-    = f.text_field :title
+    = f.text_field :title, class: "form-control"
   .field
     = f.label :description
-    = f.text_area :description
+    = f.text_area :description, class: "form-control"
   .actions
     = f.submit 'Save'

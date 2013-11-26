@@ -1,23 +1,6 @@
 %h1 Listing ingredients
 
-%table
-  %tr
-    %th Recipe
-    %th Amount
-    %th Description
-    %th
-    %th
-    %th
-
-  - @ingredients.each do |ingredient|
-    %tr
-      %td= ingredient.recipe_id
-      %td= ingredient.amount
-      %td= ingredient.description
-      %td= link_to 'Show', ingredient
-      %td= link_to 'Edit', edit_ingredient_path(ingredient)
-      %td= link_to 'Destroy', ingredient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render 'index'
 
 %br
-
-= link_to 'New Ingredient', new_ingredient_path
+= link_to 'Back', [@recipe.user, @recipe]

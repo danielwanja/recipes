@@ -1,0 +1,17 @@
+%table.table.table-striped.table-bordered
+  %tr
+    %th Amount
+    %th Description
+    %th
+    %th
+    %th
+
+  - @ingredients.each do |ingredient|
+    %tr
+      %td= ingredient.amount
+      %td= ingredient.description
+      %td= link_to 'Edit', edit_user_recipe_ingredient_path(ingredient.recipe.user, ingredient.recipe, ingredient)
+      %td= link_to 'Destroy', [ingredient.recipe.user, ingredient.recipe, ingredient], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+= link_to 'New Ingredient', new_user_recipe_ingredient_path(@recipe.user, @recipe) if @recipe
