@@ -8,7 +8,7 @@
 
 user = User.create(twitter: 'danielwanja')
 # From http://allrecipes.com/recipe/cheese-fondue/
-recipe = user.recipes.create(title: "cheese fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe")
+recipe = user.recipes.create(title: "Cheese Fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe")
 
 recipe.ingredients.create(amount: "1"   , description: "cup dry white wine" )
 recipe.ingredients.create(amount: "1/2" , description: "pound shredded Swiss cheese" )
@@ -24,6 +24,34 @@ recipe.steps.create(position: 3, description: "Stir after each addition of chees
 recipe.steps.create(position: 4, description: "Stir in flour.")
 recipe.steps.create(position: 5, description: "When all the cheese has melted, stir in salt and nutmeg.")
 recipe.steps.create(position: 6, description: "Serve with cut-up French bread.")
+
+# JavaScript to extract recipies from HTML...Could make a Ruby version
+# var ingredients = $('.ingredient-wrap #liIngredient')
+# for (var i=0; i<ingredients.length;i++) { var ingredient = ingredients[i]; var a = $(ingredient).find('#lblIngAmount').html(); var n = $(ingredient).find('#lblIngName').html(); console.log("amount:'"+a+"', \tdescription:'"+n+"'"); }
+# var steps = $('.directions ol li span');
+# for (var i=0; i<steps.length;i++) { console.log("position:"+(i+1)+", \tdescription:'"+$(steps[i]).html()+"'") }
+
+# From http://allrecipes.com/Recipe/Moms-Pumpkin-Pie/Detail.aspx?evt19=1
+recipe = user.recipes.create(title: "Mom's Pumpkin Pie", description: "This is the pumpkin pie that my mother has made for years. It is a rich pie with just the right amount of spices.")
+
+recipe.ingredients.create(amount:'1 recipe',  description:'pastry for a 9 inch single crust pie')
+recipe.ingredients.create(amount:'3',   description:'eggs')
+recipe.ingredients.create(amount:'1',   description:'egg yolk')
+recipe.ingredients.create(amount:'1/2 cup',   description:'white sugar')
+recipe.ingredients.create(amount:'1/2 cup',   description:'packed brown sugar')
+recipe.ingredients.create(amount:'1 teaspoon',  description:'salt')
+recipe.ingredients.create(amount:'1/2 teaspoon',  description:'ground cinnamon')
+recipe.ingredients.create(amount:'1/2 teaspoon',  description:'ground nutmeg')
+recipe.ingredients.create(amount:'1/2 teaspoon',  description:'ground ginger')
+recipe.ingredients.create(amount:'1/4 teaspoon',  description:'ground cloves')
+recipe.ingredients.create(amount:'1 1/2 cups',  description:'milk')
+recipe.ingredients.create(amount:'1/2 cup',   description:'heavy whipping cream')
+recipe.ingredients.create(amount:'2 cups',  description:'pumpkin puree')
+
+recipe.steps.create(position:1,   description:'Preheat oven to 425 degrees F (220 degrees C.)' )
+recipe.steps.create(position:2,   description:'In a large bowl, combine eggs, egg yolk, white sugar and brown sugar. Add salt, cinnamon, recipe.steps.create(nutmeg, ginger and cloves. Gradually stir in milk and cream. Stir in pumpkin. Pour filling into pie shell.' )
+recipe.steps.create(position:3,   description:'Bake for ten minutes in preheated oven. Reduce heat to 350 degrees F (175 degrees C), and bake for an additional 40 to 45 minutes, or until filling is set.' )
+
 
 user = User.create(twitter: 'theaboutbox')
 # From http://allrecipes.com/Recipe/Tiffanys-Pumpkin-Cupcakes/Detail.aspx
