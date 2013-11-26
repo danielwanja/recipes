@@ -8,8 +8,8 @@
 
 user = User.create(twitter: 'danielwanja')
 # From http://allrecipes.com/recipe/cheese-fondue/
-recipe = user.recipes.create(title: "Cheese Fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe")
-
+recipe = user.recipes.create(title: "Cheese Fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe",
+                             image_url: "http://images.media-allrecipes.com/userphotos/250x250/00/06/38/63821.jpg")
 recipe.ingredients.create(amount: "1"   , description: "cup dry white wine" )
 recipe.ingredients.create(amount: "1/2" , description: "pound shredded Swiss cheese" )
 recipe.ingredients.create(amount: "1/2" , description: "pound shredded Gruyere cheese" )
@@ -32,7 +32,8 @@ recipe.steps.create(position: 6, description: "Serve with cut-up French bread.")
 # for (var i=0; i<steps.length;i++) { console.log("position:"+(i+1)+", \tdescription:'"+$(steps[i]).html()+"'") }
 
 # From http://allrecipes.com/Recipe/Moms-Pumpkin-Pie/Detail.aspx?evt19=1
-recipe = user.recipes.create(title: "Mom's Pumpkin Pie", description: "This is the pumpkin pie that my mother has made for years. It is a rich pie with just the right amount of spices.")
+recipe = user.recipes.create(title: "Mom's Pumpkin Pie", description: "This is the pumpkin pie that my mother has made for years. It is a rich pie with just the right amount of spices.",
+                             image_url: "http://images.media-allrecipes.com/userphotos/250x250/01/05/44/1054478.jpg")
 
 recipe.ingredients.create(amount:'1 recipe',  description:'pastry for a 9 inch single crust pie')
 recipe.ingredients.create(amount:'3',   description:'eggs')
@@ -55,7 +56,8 @@ recipe.steps.create(position:3,   description:'Bake for ten minutes in preheated
 
 user = User.create(twitter: 'theaboutbox')
 # From http://allrecipes.com/Recipe/Tiffanys-Pumpkin-Cupcakes/Detail.aspx
-recipe = user.recipes.create(title: "Tiffany's Pumpkin Cupcakes", description: "Moist, yellow cupcakes with cinnamon and spice make a great dessert or snack, with or without frosting")
+recipe = user.recipes.create(title: "Tiffany's Pumpkin Cupcakes", description: "Moist, yellow cupcakes with cinnamon and spice make a great dessert or snack, with or without frosting",
+                              image_url: "http://images.media-allrecipes.com/userphotos/250x250/01/02/90/1029027.jpg")
 
 recipe.ingredients.create(amount: "24",  description: "Reynolds® StayBrite® or Foil Baking Cups")
 recipe.ingredients.create(amount: "1",   description: "(18 ounce) package yellow cake mix")

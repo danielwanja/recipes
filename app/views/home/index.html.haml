@@ -1,11 +1,12 @@
 %h1 Welcome to the best cookbook site EVER!
 
-%h2 Recipies
+%h2 Recipes
 
 - @recipes = Recipe.all
 %table.table.table-striped.table-bordered
   %tr
     %th User
+    %th Image
     %th Title
     %th Description
     %th
@@ -13,6 +14,8 @@
   - @recipes.each do |recipe|
     %tr
       %td= recipe.user_id
+      %td
+        %img{ src: recipe.image_url, class: 'img-thumbnail', style: 'width:64px'}
       %td= recipe.title
       %td= recipe.description
       %td= link_to 'Show', [recipe.user, recipe]
