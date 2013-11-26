@@ -10,14 +10,19 @@
   %b Description:
   = @recipe.description
 
-%h2 Ingredients
-- @ingredients = @recipe.ingredients
-= render :partial => 'ingredients/index'
+%ul.nav.nav-tabs
+  %li.active
+    %a{"data-toggle" => "tab", href: "#ingredients"} Ingredients
+  %li
+    %a{"data-toggle" => "tab", href: "#steps"} Steps
 
-%h2 Steps
-
-- @steps = @recipe.steps
-= render :partial => 'steps/index'
+.tab-content
+  #ingredients.tab-pane.active
+    - @ingredients = @recipe.ingredients
+    = render :partial => 'ingredients/index'
+  #steps.tab-pane
+    - @steps = @recipe.steps
+    = render :partial => 'steps/index'
 
 %br
 = link_to 'Edit', edit_user_recipe_path(@recipe.user, @recipe)
