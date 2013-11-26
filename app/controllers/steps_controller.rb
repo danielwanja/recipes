@@ -4,6 +4,6 @@ class StepsController < InheritedResources::Base
 
   protected
   def permitted_params
-    params.permit(ingredient: [:position, :description])
+    params.permit(step: [:position, :description])
   end
 end
