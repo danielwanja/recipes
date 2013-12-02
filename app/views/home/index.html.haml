@@ -2,7 +2,8 @@
 
 %h2 Recipes
 
-- @recipes = Recipe.all
+- @recipes = Recipe.page(params[:page])
+= paginate @recipes
 %table.table.table-striped.table-bordered
   %tr
     %th User
@@ -19,6 +20,7 @@
       %td= recipe.title
       %td= recipe.description
       %td= link_to 'Show', [recipe.user, recipe]
+= paginate @recipes
 
 
 %h2 Users

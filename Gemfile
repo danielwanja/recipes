@@ -41,6 +41,8 @@ gem 'acts-as-taggable-on'
   gem 'google-search'
   gem 'rubyzip'
 
+# Pagination
+gem 'kaminari'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
