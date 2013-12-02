@@ -8,7 +8,7 @@
   - @steps.each do |step|
     %tr
       %td= step.position
-      %td= step.description
+      %td= simple_format h step.description
       %td= link_to 'Edit', edit_user_recipe_step_path(step.recipe.user, step.recipe, step)
       %td= link_to 'Destroy', [step.recipe.user, step.recipe, step], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
