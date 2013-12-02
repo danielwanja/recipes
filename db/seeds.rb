@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+user = User.create(twitter: 'squirrel')
+RecipeDownloader.new.parse_all(user)
 
 user = User.create(twitter: 'danielwanja')
 # From http://allrecipes.com/recipe/cheese-fondue/
