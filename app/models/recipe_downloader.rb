@@ -33,11 +33,14 @@ class RecipeDownloader
       recipe = xml["recipeml"]["recipe"]
       title = recipe["head"]["title"]
       image_url = get_image_url(title||name)
-      categories = Array.wrap(recipe["head"]["categories"]["cat"])
+      categories = Array.wrap(recipe["head"]["categories"]["cat"]).join(', ')
       steps = recipe["directions"]["step"]
       ingredients = recipe["ingredients"]
 
-      new_recipe = @user.recipes.create(title: title.to_s[0..254], description: nil, image_url: image_url, tag_list: categories.join(', '))
+      new_recipe = @user.recipes.create(title: title.to_s[0..254],
+                                        description: nil,
+                                        image_url: image_url&&image_url.length<255 ? image_url : nil,
+                                        tag_list: categories&&categories.length<255 ? categories : nil)
 
       # steps
       if steps.nil?
