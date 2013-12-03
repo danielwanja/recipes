@@ -33,6 +33,8 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+gem 'textacular', '~> 3.0'
+gem 'schema_plus', '1.2.0'
 
 # Tagging
 gem 'acts-as-taggable-on'

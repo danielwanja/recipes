@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202223303) do
+ActiveRecord::Schema.define(version: 20131203061332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20131202223303) do
     t.string   "image_url"
   end
 
+  create_view "recipe_searches", "SELECT recipes.id, recipes.id AS recipe_id, recipes.title, recipes.description, string_agg((ingredients.description)::text, ' '::text) AS ingredients FROM recipes, ingredients WHERE (ingredients.recipe_id = recipes.id) GROUP BY recipes.id", :force => true
   create_table "steps", force: true do |t|
     t.integer  "recipe_id"
     t.integer  "position"
@@ -50,10 +51,9 @@ ActiveRecord::Schema.define(version: 20131202223303) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
+    t.index ["tag_id"], :name => "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
   end
-
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
     t.string "name"
