@@ -9,3 +9,15 @@ two:
   recipe_id: 1
   position: 1
   description: MyText
+
+# == Schema Information
+#
+# Table name: steps
+#
+#  id          :integer          not null, primary key
+#  recipe_id   :integer
+#  position    :integer
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#

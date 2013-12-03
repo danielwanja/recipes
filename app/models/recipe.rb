@@ -5,3 +5,16 @@ class Recipe < ActiveRecord::Base
 
   acts_as_taggable
 end
+
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  title       :string(255)
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#  image_url   :string(255)
+#
