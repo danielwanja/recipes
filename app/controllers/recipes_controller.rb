@@ -8,6 +8,10 @@ class RecipesController < InheritedResources::Base
   end
 
   def collection
-    @recipes ||= end_of_association_chain.page(params[:page])
+    if params[:tag].blank?
+      @recipes ||= end_of_association_chain.page(params[:page])
+    else
+      @recipes ||= end_of_association_chain.tagged_with(params[:tag]).page(params[:page])
+    end
   end
 end
