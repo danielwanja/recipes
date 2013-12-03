@@ -7,8 +7,12 @@
 
   - @ingredients.each do |ingredient|
     %tr
-      %td= ingredient.amount
-      %td= ingredient.description
+      %td #{ingredient.amount} #{ingredient.unit}
+      %td
+        - if ingredient.amount.nil?
+          %strong= ingredient.description
+        -else
+          = ingredient.description
       %td= link_to 'Edit', edit_user_recipe_ingredient_path(ingredient.recipe.user, ingredient.recipe, ingredient)
       %td= link_to 'Destroy', [ingredient.recipe.user, ingredient.recipe, ingredient], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
