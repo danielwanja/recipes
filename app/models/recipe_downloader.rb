@@ -37,16 +37,17 @@ class RecipeDownloader
       steps = recipe["directions"]["step"]
       ingredients = recipe["ingredients"]
 
-      new_recipe = @user.recipes.create(title: title, description: nil, image_url: image_url, tag_list: categories.join(', '))
+      new_recipe = @user.recipes.create(title: title.to_s[0..254], description: nil, image_url: image_url, tag_list: categories.join(', '))
 
       # steps
       if steps.nil?
         puts "\tno steps"
       elsif steps.is_a?(String)
         puts "\tSteps:#{}"
-        new_recipe.steps.create(position:1,   description: steps )
+        new_recipe.steps.create(position:1,   description: steps.to_s[0..254] )
       else
-        binding.pry  #Anything else out there?
+        #Anything else out there?
+        puts "\tSteps:#{steps.class} !!!!!"
       end
 
       # intgredients
