@@ -40,8 +40,8 @@ gem 'schema_plus', '1.2.0'
 gem 'acts-as-taggable-on'
 
 # Just for the Recipe Downloader
-  gem 'google-search'
-  gem 'rubyzip'
+gem 'google-search'
+gem 'rubyzip'
 
 # Pagination
 gem 'kaminari'
