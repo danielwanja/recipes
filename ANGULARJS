@@ -6,7 +6,7 @@ Unit testing will be done using Jasmine and Protractor. Most tests will use mock
 
 AngularJS appications are often referred to as Single Page Applications, so this is what we will build. This doesn't mean the application has only one page, it just mean HTML templates will be served once upfront by the server the AngularJS will use these templates to dynamically generate the UI.
 
-From an client-server integration point of view this demo application will show the how the AngularJS application consume a standard Rails resource (CRUD), nested resources, and hopefully also how to deal with nested attributes using Restangular.
+From an client-server integration point of view this demo application will show the how the AngularJS application consume a standard Rails resource (CRUD), nested resources, and hopefully also how to deal with nested attributes.
 
 ## Integrating AngularJS
 
@@ -44,8 +44,30 @@ To server our Angular app we use the home/app.html.haml view.
 
 ## What about adding a small unit test
 
+Will use teaspoon, from my friends at modeset, to integrate Jasmine javascript tests. See https://github.com/modeset/teaspoon
+
+
+
 ## And an integration test
 
 ## Getting some data from the server
 
+Several choices:
+
+* ngResource
+* restangular https://github.com/mgonto/restangular
+* angularjs-rails-resource  https://github.com/FineLinePrototyping/angularjs-rails-resource
+
+I haven't used restangular before, so I will try it out and hopefully it will work flawlessly.
+
 ## Building out the UI with Angular templates
+
+Use https://github.com/angular-ui/bootstrap/tree/bootstrap3
+
+1. Recipe list (list+thumbnails)
+2. Paginate list
+3. Search list
+4. Show recipe (ingredients+steps)
+5. CRUD ingredients+steps
+6. Add recipe
+
