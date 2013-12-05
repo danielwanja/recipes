@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20131203061332) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
-    t.index ["tag_id"], :name => "index_taggings_on_tag_id"
-    t.index ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["tag_id"], :name => "index_taggings_on_tag_id", :order => {"tag_id" => :asc}
+    t.index ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context", :order => {"taggable_id" => :asc, "taggable_type" => :asc, "context" => :asc}
   end
 
   create_table "tags", force: true do |t|

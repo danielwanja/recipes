@@ -1,0 +1,51 @@
+ANGULARJS
+
+You could build your AngularJS application totally separated from your Rails application which you can then consider simply as an JSON server. This demo is for Derailed, so I will just create the AngularJS client right in the Rails assets folder.
+
+Unit testing will be done using Jasmine and Protractor. Most tests will use mocks for the call, but I will also show how to integrate Protractor with a running Rails server (in test mode) to demonstrate some end to end testing.
+
+AngularJS appications are often referred to as Single Page Applications, so this is what we will build. This doesn't mean the application has only one page, it just mean HTML templates will be served once upfront by the server the AngularJS will use these templates to dynamically generate the UI.
+
+From an client-server integration point of view this demo application will show the how the AngularJS application consume a standard Rails resource (CRUD), nested resources, and hopefully also how to deal with nested attributes using Restangular.
+
+## Integrating AngularJS
+
+You can add the AngularJS 1.2.3 required libraries to the app/assets/javascripts/angularjs/ folder
+  angular-animate.min.js
+  angular-mocks.js
+  angular-resource.min.js
+  angular-route.min.js
+  angular.min.js
+
+You could also simply include the AngularJS scripts into your layout's header i.e.
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+
+Or you could use 'bower' a JavaScript library manager, see https://github.com/bower/bower and https://github.com/spagalloco/bower
+
+Also removing jquery, jquery_ujs and turbolinks for this demo. You can leave them for you project if you need jquery or want a hybrid approach. Removeing bootstrap.min.js that relies on jquery.
+
+## Enable AngularJS
+
+In your application template just add the ng-app directive, now all your Rails rendered pages are AngularJS ready:
+
+  <html ng-app>
+
+To server our Angular app we use the home/app.html.haml view.
+
+  %label Name:
+  %input{"ng-model" => "yourName", placeholder: "Enter a name here", type: "text"}/
+  %hr/
+  %h1 Hello !{{yourName}}!
+
+## Initialize your AngularJS application
+
+## Declare your first controller
+
+## What about adding a small unit test
+
+## And an integration test
+
+## Getting some data from the server
+
+## Building out the UI with Angular templates
