@@ -6,4 +6,8 @@ class RecipeSearch < ActiveRecord::Base
   def readonly?
     true
   end
+
+  def self.search(query,page=1)
+    RecipeSearch.basic_search(query).page(page)
+  end
 end

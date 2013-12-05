@@ -8,6 +8,7 @@ Recipes::Application.routes.draw do
   end
 
   resources :recipes  # Show all recipes
+  resource :search
 
 
   # The priority is based upon order of creation: first created -> highest priority.
