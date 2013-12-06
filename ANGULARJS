@@ -44,8 +44,16 @@ To server our Angular app we use the home/app.html.haml view.
 
 ## What about adding a small unit test
 
-Will use teaspoon, from my friends at modeset, to integrate Jasmine javascript tests. See https://github.com/modeset/teaspoon
+Will use teaspoon, from my friends at modeset, to integrate Jasmine javascript tests.
+See https://github.com/modeset/teaspoon and https://github.com/modeset/teaspoon/wiki/Using-Angular
+By default teaspoon use Jasmine. See http://pivotal.github.io/jasmine/
 
+Jasmine.Async
+http://www.htmlgoodies.com/html5/javascript/using-the-done-method-in-your-jasmine-driven-asynchronous-javascript-tests.html#fbid=AXFiaGJEZSE
+
+For restangular see
+
+http://www.slideshare.net/JamieDavidson2/rails-angular-meetup
 
 
 ## And an integration test
@@ -60,6 +68,8 @@ Several choices:
 
 I haven't used restangular before, so I will try it out and hopefully it will work flawlessly.
 
+Note restangular depends on the lodash library. This bit me :-P
+
 ## Building out the UI with Angular templates
 
 Use https://github.com/angular-ui/bootstrap/tree/bootstrap3
@@ -71,3 +81,19 @@ Use https://github.com/angular-ui/bootstrap/tree/bootstrap3
 5. CRUD ingredients+steps
 6. Add recipe
 
+
+
+## Links
+
+* http://pivotal.github.io/jasmine/
+* https://shellycloud.com/blog/2013/10/how-to-integrate-angularjs-with-rails-4
+* http://www.ng-newsletter.com/posts/restangular.html
+* http://www.htmlgoodies.com/html5/javascript/using-the-done-method-in-your-jasmine-driven-asynchronous-javascript-tests.* html
+* http://plnkr.co/edit/d6yDka?p=preview
+* https://github.com/mgonto/restangular/blob/master/test/restangularSpec.js
+* http://docs.angularjs.org/api/ngMock.$httpBackend
+* http://www.tuesdaydeveloper.com/2013/06/angularjs-testing-with-karma-and-jasmine/
+
+## TODO: 
+
+[ ] reenable protect_from_forgery

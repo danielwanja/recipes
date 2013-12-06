@@ -5,3 +5,13 @@ app.html.haml
   %input{"ng-model" => "yourName", placeholder: "Enter a name here", type: "text"}/
   %hr/
   %h1 Hello !{{yourName}}!
+
+%div
+  DEBUG#1: {{recipes.length}}
+%div
+  DEBUG#2:
+  precipes
+  %ul
+    %li{ 'ng-repeat' => "recipe in recipes" }
+      {{ recipe.id }}:{{ recipe.title }}
+  </ul>
