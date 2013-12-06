@@ -1,14 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-user = User.create(twitter: 'squirrel')
-RecipeDownloader.new.parse_all(user)
+# user = User.create(twitter: 'squirrel')
+# RecipeDownloader.new.parse_all(user)
 
 user = User.create(twitter: 'danielwanja')
+
 # From http://allrecipes.com/recipe/cheese-fondue/
 recipe = user.recipes.create(title: "Cheese Fondue", description: "Not a Traditional Cheese Fondue Swiss Recipe",
                              image_url: "http://images.media-allrecipes.com/userphotos/250x250/00/06/38/63821.jpg")
@@ -26,12 +20,6 @@ recipe.steps.create(position: 3, description: "Stir after each addition of chees
 recipe.steps.create(position: 4, description: "Stir in flour.")
 recipe.steps.create(position: 5, description: "When all the cheese has melted, stir in salt and nutmeg.")
 recipe.steps.create(position: 6, description: "Serve with cut-up French bread.")
-
-# JavaScript to extract recipies from HTML...Could make a Ruby version
-# var ingredients = $('.ingredient-wrap #liIngredient')
-# for (var i=0; i<ingredients.length;i++) { var ingredient = ingredients[i]; var a = $(ingredient).find('#lblIngAmount').html(); var n = $(ingredient).find('#lblIngName').html(); console.log("amount:'"+a+"', \tdescription:'"+n+"'"); }
-# var steps = $('.directions ol li span');
-# for (var i=0; i<steps.length;i++) { console.log("position:"+(i+1)+", \tdescription:'"+$(steps[i]).html()+"'") }
 
 # From http://allrecipes.com/Recipe/Moms-Pumpkin-Pie/Detail.aspx?evt19=1
 recipe = user.recipes.create(title: "Mom's Pumpkin Pie", description: "This is the pumpkin pie that my mother has made for years. It is a rich pie with just the right amount of spices.",
@@ -57,6 +45,7 @@ recipe.steps.create(position:3,   description:'Bake for ten minutes in preheated
 
 
 user = User.create(twitter: 'theaboutbox')
+
 # From http://allrecipes.com/Recipe/Tiffanys-Pumpkin-Cupcakes/Detail.aspx
 recipe = user.recipes.create(title: "Tiffany's Pumpkin Cupcakes", description: "Moist, yellow cupcakes with cinnamon and spice make a great dessert or snack, with or without frosting",
                               image_url: "http://images.media-allrecipes.com/userphotos/250x250/01/02/90/1029027.jpg")
