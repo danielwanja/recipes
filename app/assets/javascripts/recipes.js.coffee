@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+#= require ./store
+#= require_tree ./models
+#= require_tree ./controllers
+#= require_tree ./views
+#= require_tree ./helpers
+#= require_tree ./components
+#= require_tree ./templates
+#= require_tree ./routes
+#= require ./router
+#= require_self
