@@ -1,5 +1,6 @@
-//= require angularjs/angular.min
-//= require angularjs/angular-animate.min
-//= require angularjs/angular-mocks
-//= require angularjs/angular-resource.min
-//= require angularjs/angular-route.min
+//= require angularjs/angular
+//= require angularjs/angular-animate
+//= require angularjs/angular-resource
+//= require angularjs/angular-route
+//= require angularjs/lodash
+//= require angularjs/restangular
