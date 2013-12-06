@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title Recipes
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1.0"}
+
+    %link{rel: "stylesheet", href:"//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"}
+    %link{rel: "stylesheet", href:"//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css"}
+    %script{src: "//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"}
+  %body
+    .container
+      %nav.navbar.navbar-default{role: 'navigation'}
+        .navbar-header
+          = link_to 'Super Cookbook', root_path, class: 'navbar-brand'
+        %form.navbar-form.navbar-right{action: search_path}
+          .form-group
+            %input.form-control{type: 'text',name:'query', role: 'search', placeholder: 'Search Recipes', value: @query}
+          %button.btn.btn-default Submit
+      = yield

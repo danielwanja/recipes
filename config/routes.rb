@@ -8,6 +8,7 @@ Recipes::Application.routes.draw do
   end
 
   resources :recipes  # Show all recipes
+  resource :search
 
   get 'app' => 'home#app'  # <- Starting point of our AngularJS app
 
