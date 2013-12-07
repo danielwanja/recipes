@@ -54,6 +54,7 @@ end
 group :development, :test do
   gem 'annotate'
   gem 'pry'
+  gem "teaspoon"
 end
 
 # Use ActiveModel has_secure_password
