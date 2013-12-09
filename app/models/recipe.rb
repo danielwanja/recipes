@@ -1,8 +1,9 @@
 class Recipe < ActiveRecord::Base
   belongs_to :user
-  has_many :ingredients
+  has_many :ingredients, -> { order "id" }  # FIXME: add position
   has_many :steps, -> { order "position" }
 
+  accepts_nested_attributes_for :ingredients, :steps, allow_destroy: true
   acts_as_taggable
 end
 

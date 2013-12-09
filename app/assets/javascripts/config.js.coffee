@@ -1,10 +1,13 @@
 app = angular.module("recipe-project", ['ngRoute', 'rails', 'ui.bootstrap'])
 
-app.factory "Recipe", ["railsResourceFactory", (railsResourceFactory) ->
+app.factory "Recipe", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
   railsResourceFactory
     url: "/recipes"
     name: "recipe"
     pluralName: "recipes"
+    serializer: railsSerializer(->
+      @nestedAttribute "ingredients", "steps"
+    )
 ]
 
 app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) ->
@@ -28,6 +31,7 @@ app.run ["$rootScope", "Recipe", "$location", ($rootScope, Recipe, $location) ->
     $location.path "/"
 
   $rootScope.goHome = ->
+    $rootScope.searchCriteria = null
     $location.path "/"
 
 ]
