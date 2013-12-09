@@ -4,6 +4,7 @@ app.config ['$routeProvider', "$httpProvider", 'RestangularProvider', ($routePro
   RestangularProvider.setBaseUrl "/"
   # RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'})
   RestangularProvider.setRequestSuffix('.json')
+  RestangularProvider.setRestangularFields id: "_id.$oid"
 ]
 
 app.run ["$rootScope", "Restangular", ($rootScope, Restangular) ->
