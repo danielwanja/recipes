@@ -67,6 +67,7 @@ Several choices:
 * angularjs-rails-resource  https://github.com/FineLinePrototyping/angularjs-rails-resource
 
 I haven't used restangular before, so I will try it out and hopefully it will work flawlessly.
+Ok I tried restangular and will create a version with it, however it doesn't support nested attributes which I want to use to update a recipe. So based on that there is limited time left before the presentation, I will switch to AngularJS Rails Resource.
 
 Note restangular depends on the lodash library. This bit me :-P
 

@@ -27,6 +27,7 @@ GEM
       tzinfo (~> 0.3.37)
     acts-as-taggable-on (2.4.1)
       rails (>= 3, < 5)
+    angularjs-rails-resource (0.2.5)
     annotate (2.6.0)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -157,6 +158,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  angularjs-rails-resource (~> 0.2.5)
   annotate
   coffee-rails (~> 4.0.0)
   google-search

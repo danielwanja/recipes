@@ -2,5 +2,4 @@
 //= require angularjs/angular-animate
 //= require angularjs/angular-resource
 //= require angularjs/angular-route
-//= require angularjs/lodash
-//= require angularjs/restangular
+//= require angularjs/rails/resource

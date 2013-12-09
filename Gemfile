@@ -46,6 +46,9 @@ gem 'rubyzip'
 # Pagination
 gem 'kaminari'
 
+# AngularJS Rails Resource
+gem 'angularjs-rails-resource', '~> 0.2.5'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
