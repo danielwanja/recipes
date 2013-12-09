@@ -18,7 +18,16 @@ app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) -
 
 ]
 
-app.run ["$rootScope", "Recipe", ($rootScope, Recipe) ->
+app.run ["$rootScope", "Recipe", "$location", ($rootScope, Recipe, $location) ->
   $rootScope.recipes = []
   $rootScope.selectedRecipe = null
+
+  $rootScope.search = (criteria)->
+    $rootScope.searchCriteria = if criteria? and criteria != "" then criteria else null
+    $rootScope.$broadcast('searchEvent', criteria);
+    $location.path "/"
+
+  $rootScope.goHome = ->
+    $location.path "/"
+
 ]

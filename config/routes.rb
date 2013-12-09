@@ -14,6 +14,7 @@ Recipes::Application.routes.draw do
   get 'app' => 'templates#app'  # <- Starting point of our AngularJS app.
   get 'templates/index.html' => 'templates#index'
   get 'templates/recipe.html' => 'templates#recipe'
+  get 'templates/pagination.html' => 'templates#pagination'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

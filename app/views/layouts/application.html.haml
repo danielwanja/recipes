@@ -1,5 +1,5 @@
 !!!
-%html
+%html{"ng-app" => "recipe-project"}
   %head
     %title Recipes
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
@@ -13,11 +13,11 @@
     .container
       %nav.navbar.navbar-default{role: 'navigation'}
         .navbar-header
-          = link_to 'Super Cookbook', root_path, class: 'navbar-brand'
-        %form.navbar-form.navbar-right{action: search_path}
+          %a.navbar-brand{ 'ng-click' => 'goHome()' } Super Cookbook
+        %form.navbar-form.navbar-right
           .form-group
-            %input.form-control{type: 'text',name:'query', role: 'search', placeholder: 'Search Recipes', value: @query}
-          %button.btn.btn-default Submit
+            %input.form-control{type: 'text', placeholder: 'Search Recipes', 'ng-model' => 'searchCriteria'}
+          %button.btn.btn-default{ 'ng-click' => 'search(searchCriteria)'} Submit
       = yield
 
 

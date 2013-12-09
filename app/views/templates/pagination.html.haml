@@ -1,0 +1,5 @@
+Page {{pagination.currentPage}}/{{pagination.totalPages}}
+%a{ 'ng-click' => 'previousPage()', 'ng-if' => "pagination.hasPrevious"}
+  <<
+%a{ 'ng-click' => 'nextPage()', 'ng-if' => "pagination.hasNext"}
+  >>

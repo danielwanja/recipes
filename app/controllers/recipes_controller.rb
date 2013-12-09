@@ -9,10 +9,15 @@ class RecipesController < InheritedResources::Base
   end
 
   def collection
-    if params[:tag].blank?
-      @recipes ||= end_of_association_chain.page(params[:page])
-    else
+    if params[:tag].present?
       @recipes ||= end_of_association_chain.tagged_with(params[:tag]).page(params[:page])
+    elsif params[:search]
+      @results = RecipeSearch.search(params[:search],params[:page])
+      @results.each_with_index {|rs, i| @results[i] = rs.recipe }  # was .map(&:recipe), but we want to keep pagination intact
+      @recipes = @results
+    else
+      @recipes ||= end_of_association_chain.page(params[:page])
     end
+    @recipes
   end
 end

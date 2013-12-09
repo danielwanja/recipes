@@ -1,6 +1,4 @@
-%div
-  DEBUG#1: {{recipes.length}}
-
+%div{ 'ng-include' => "'templates/pagination.html'" }
 %table.table.table-striped.table-bordered
   %tr
     %th
@@ -12,3 +10,4 @@
     %td {{ recipe.title }}
     %th
       %a{ 'ng-click' => "showRecipe(recipe)"} Show
+%div{ 'ng-include' => "'templates/pagination.html'" }
