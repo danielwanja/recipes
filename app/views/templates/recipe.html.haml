@@ -1,0 +1,47 @@
+%p
+  %b Title: {{selectedRecipe.title}}
+%p
+  %b Description: {{selectedRecipe.description}}
+
+%tabset
+
+  %tab{heading: "Ingredients ({{selectedRecipe.ingredients.length}})"}
+
+    %table.table.table-striped.table-bordered
+      %tr
+        %th Amount
+        %th Description
+        %th
+        %th
+
+      %tr{ 'ng-repeat' => "ingredient in selectedRecipe.ingredients" }
+        %td {{ingredient.amount}} {{ingredient.unit}}
+        %td {{ingredient.description}}
+        %td
+          %a{ 'ng-click' => "edit(ingredient)"} Edit
+        %td
+          %a{ 'ng-click' => "delete(ingredient)"} Destroy
+
+    %br
+    %a New Ingredient
+
+
+  %tab{heading: "Steps ({{selectedRecipe.steps.length}})"}
+
+    %table.table.table-striped.table-bordered
+      %tr
+        %th Position
+        %th Description
+        %th
+        %th
+
+      %tr{ 'ng-repeat' => "step in selectedRecipe.steps" }
+        %td {{step.position}}
+        %td {{step.description}}
+        %td
+          %a{ 'ng-click' => "edit(step)"} Edit
+        %td
+          %a{ 'ng-click' => "delete(step)"} Destroy
+
+    %br
+    %a New Step

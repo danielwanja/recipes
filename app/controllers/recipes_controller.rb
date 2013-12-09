@@ -5,7 +5,7 @@ class RecipesController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(recipe: [:title, :description])
+    params.permit(recipe: [:title, :description, :image_url])
   end
 
   def collection

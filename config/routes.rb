@@ -10,7 +10,11 @@ Recipes::Application.routes.draw do
   resources :recipes  # Show all recipes
   resource :search
 
-  get 'app' => 'home#app'  # <- Starting point of our AngularJS app
+  # AngularJS App
+  get 'app' => 'templates#app'  # <- Starting point of our AngularJS app.
+  get 'templates/index.html' => 'templates#index'
+  get 'templates/recipe.html' => 'templates#recipe'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

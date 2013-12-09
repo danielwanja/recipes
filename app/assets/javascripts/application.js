@@ -11,5 +11,5 @@
 // about supported directives.
 //
 //= require angularjs
-//= require main
+//= require config
 //= require_tree .
