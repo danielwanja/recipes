@@ -1,14 +1,20 @@
 @RecipesController = ($scope, $rootScope, Recipe, $location, $route, $routeParams) ->
 
   $scope.load = (page)->
-    options = {}
-    options['page'] = page if page?
-    options['search'] = $rootScope.searchCriteria if $rootScope.searchCriteria? or $rootScope.searchCriteria == ""
-    Recipe.query(options).then (pagination) ->
+    options = null
+    if page?
+      options ?= {}
+      options['page'] = page
+    if $rootScope.searchCriteria? and $rootScope.searchCriteria != ""
+      options ?= {}
+      options['search'] = $rootScope.searchCriteria
+    call = Recipe.query(options)
+    call.then (pagination) ->
       $scope.pagination = pagination
       $scope.pagination.hasPrevious = pagination.currentPage>1
       $scope.pagination.hasNext = pagination.currentPage<pagination.totalPages
       $scope.recipes = pagination.entries
+    call # Return this for testing purpose. TODO: find a nicer way
 
   $scope.nextPage = ->
     $scope.load($scope.pagination.currentPage+1) if $scope.pagination.hasNext

@@ -25,3 +25,4 @@
 #= require application
 #= require support/jasmine.async
 #= require support/angular-mocks
+#= require fixtures/calls
