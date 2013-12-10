@@ -1,4 +1,4 @@
-@RecipeController = ($scope, $rootScope, Recipe, $location, $route, $routeParams) ->
+@RecipeController = ($scope, $rootScope, Recipe, $location, $routeParams) ->
 
   $scope.loadRecipe = (id)->
     Recipe.get(id).then (recipe)->
@@ -56,4 +56,4 @@
   $scope.editing = false
   $scope.loadRecipe($routeParams.id)
 
-@RecipeController.$inject = ['$scope', '$rootScope', 'Recipe', '$location', '$route', '$routeParams'];
+@RecipeController.$inject = ['$scope', '$rootScope', 'Recipe', '$location', '$routeParams'];
