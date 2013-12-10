@@ -1,7 +1,18 @@
+:css
+  .textbox {
+      height: 150px;
+      width: 100%;
+  }
+  .strike {
+    opacity:0.4;
+    text-decoration: line-through;
+  }
 %p
   %b Title: {{selectedRecipe.title}}
 %p
   %b Description: {{selectedRecipe.description}}
+
+%a.btn.btn-primary{ 'ng-hide' => "editing",  'ng-click' => "edit()" } Edit
 
 %tabset
 
@@ -12,18 +23,19 @@
         %th Amount
         %th Description
         %th
-        %th
 
-      %tr{ 'ng-repeat' => "ingredient in selectedRecipe.ingredients" }
-        %td {{ingredient.amount}} {{ingredient.unit}}
-        %td {{ingredient.description}}
+      %tr{ 'ng-repeat' => "ingredient in selectedRecipe.ingredients", 'ng-class' => "{strike: ingredient._destroy}" }
         %td
-          %a{ 'ng-click' => "edit(ingredient)"} Edit
+          %span{ 'ng-hide' => 'editing' } {{ingredient.amount}} {{ingredient.unit}}
+          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.amount", 'placeholder' => "Amount", 'ng-required' => true }
+          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.unit", 'placeholder' => "Unit", 'ng-required' => true }
         %td
-          %a{ 'ng-click' => "delete(ingredient)"} Destroy
+          %span{ 'ng-hide' => 'editing' } {{ingredient.description}}
+          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.description", 'placeholder' => "Description", 'ng-required' => true }
+        %td
+          %a{ 'ng-click' => "deleteIngredient(ingredient)", 'ng-show' => 'editing'} Destroy
 
-    %br
-    %a New Ingredient
+    %a{'ng-show' => 'editing', 'ng-click' => "addIngredient()" } New Ingredient
 
 
   %tab{heading: "Steps ({{selectedRecipe.steps.length}})"}
@@ -33,17 +45,21 @@
         %th Position
         %th Description
         %th
-        %th
 
-      %tr{ 'ng-repeat' => "step in selectedRecipe.steps" }
-        %td {{step.position}}
-        %td {{step.description}}
+      %tr{ 'ng-repeat' => "step in selectedRecipe.steps", 'ng-class' => "{strike: step._destroy}" }
         %td
-          %a{ 'ng-click' => "edit(step)"} Edit
+          %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.position}}
+          %input{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.position", 'placeholder' => "Position", 'ng-required' => true }
         %td
-          %a{ 'ng-click' => "delete(step)"} Destroy
+          %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.description}}
+          %textarea.textbox{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.description", 'placeholder' => "Description", 'ng-required' => true }
+        %td
+          %a{ 'ng-click' => "deleteStep(step)", 'ng-show' => 'editing'} Destroy
 
-    %br
-    %a New Step
+    %a{ 'ng-show' => 'editing', 'ng-click' => "addStep()"  } New Step
 
-%a{ 'ng-click' => "save()" } Save
+%span{ 'ng-show' => 'editing' }
+  %a.btn.btn-primary{ 'ng-click' => "save()" } Save
+  or
+  %a{ 'ng-click' => "cancel()" } Cancel
+
