@@ -8,7 +8,6 @@ gem 'rails_12factor', group: :production
 gem 'responders'
 gem 'inherited_resources'
 
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 
 # Use SCSS for stylesheets
@@ -24,9 +23,6 @@ gem 'ember-source', '1.2.0' # or the version you need
 
 gem 'haml-rails'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
@@ -35,6 +31,8 @@ gem 'turbolinks'
 
 gem 'textacular', '~> 3.0'
 gem 'schema_plus', '1.2.0'
+
+gem 'active_model_serializers'
 
 # Tagging
 gem 'acts-as-taggable-on'
@@ -56,15 +54,3 @@ group :development, :test do
   gem 'pry'
   gem "teaspoon"
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
