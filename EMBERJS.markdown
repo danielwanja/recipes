@@ -29,4 +29,8 @@ Using [Teaspoon](https://github.com/modeset/teaspoon) as test runner.
 
 0. Run `rails g teaspoon:install --framework=qunit --coffee`
 
+0. Rename 'test_helper.coffee' to 'spec_helper.coffee'
 
+== Developing
+
+0. `rails g ember:model recipe`

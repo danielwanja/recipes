@@ -21,4 +21,17 @@
 # For more information: http://github.com/modeset/teaspoon
 #
 # You can require javascript files here. A good place to start is by requiring your application.js.
+
 #= require application
+
+document.write('<div id="ember-testing-container" style="display:none"><div id="ember-testing"></div></div>');
+
+Recipes.rootElement = '#ember-testing';
+Recipes.setupForTesting();
+Recipes.injectTestHelpers();
+Recipes.Store = DS.Store.extend({
+  revision: 13,
+  adapter: DS.FixtureAdapter
+});
+
+

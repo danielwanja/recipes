@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'ember-rails'
 gem 'ember-source', '1.2.0' # or the version you need
+gem 'ember-data-source', '1.0.0.beta.3'
 
 gem 'haml-rails'
 

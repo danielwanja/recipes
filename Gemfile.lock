@@ -47,7 +47,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    ember-data-source (0.14)
+    ember-data-source (1.0.0.beta.3)
       ember-source
     ember-rails (0.14.1)
       active_model_serializers
@@ -177,6 +177,7 @@ DEPENDENCIES
   acts-as-taggable-on
   annotate
   coffee-rails (~> 4.0.0)
+  ember-data-source (= 1.0.0.beta.3)
   ember-rails
   ember-source (= 1.2.0)
   google-search
