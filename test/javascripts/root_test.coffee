@@ -11,3 +11,5 @@ test "Has a search box", ->
 test "Has recipes", ->
   visit('/').then -> ok(find('.recipe').length > 0, 'Has Recipes')
 
+test "Links to a recipe", ->
+  visit('/').then -> ok(find('.recipe a').length == 1, 'Links to a recipe')

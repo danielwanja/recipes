@@ -6,7 +6,7 @@
     <th>Description</th>
     <th>Actions</th>
   </tr>
-{{#each}}
-  {{partial "recipe"}}
-{{/each}}
+  {{#each recipe in controller}}
+    {{partial "recipe"}}
+  {{/each}}
 </table>

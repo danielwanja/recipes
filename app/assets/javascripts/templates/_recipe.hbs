@@ -1,8 +1,9 @@
 <tr class="recipe">
   <td></td>
-  <td><img class="img-thumbnail" style="width: 64px;" {{bindAttr src=image_url}}/></td>
-  <td>{{title}}</td>
-  <td>{{description}}</td>
-  <td></td>
+  <td><img class="img-thumbnail" style="width: 64px;" {{bindAttr
+    src=recipe.image_url}}/></td>
+  <td>{{recipe.title}}</td>
+  <td>{{recipe.description}}</td>
+  <td>{{#linkTo 'recipe' recipe}}Show{{/linkTo}}</td>
 </tr>
 
