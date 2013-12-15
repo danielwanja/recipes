@@ -7,59 +7,71 @@
     opacity:0.4;
     text-decoration: line-through;
   }
-%p
-  %b Title: {{selectedRecipe.title}}
-%p
-  %b Description: {{selectedRecipe.description}}
 
-%a.btn.btn-primary{ 'ng-hide' => "editing",  'ng-click' => "edit()" } Edit
+%form#recipeForm{ name: "recipeForm", "novalidate" => "true" }
+  %p
+    %b{ 'ng-hide' => 'editing' }
+      Title: {{selectedRecipe.title}}
+    .field{ 'ng-show' => 'editing', "ng-class" => "{'has-error': recipeForm.title.$invalid}"}
+      %label Title
+      %input#title.form-control{ "name" => "title", "ng-model" => "selectedRecipe.title", type: "text", "required" => true, "ng-minlength" => 5}
+      %span.help-block{"ng-show" => "recipeForm.title.$dirty && recipeForm.title.$error.required"} Required
+      %span.help-block{"ng-show" => "recipeForm.title.$dirty && recipeForm.title.$error.minlength"} At least 5 characters
+  %p{ 'ng-hide' => 'editing' }
+    %b
+      Description: {{selectedRecipe.description}}
+    .field{ 'ng-show' => 'editing' }
+      %label Description
+      %textarea#recipe_description.form-control{ "ng-model" => "selectedRecipe.description" }
 
-%tabset
+  %a.btn.btn-primary{ 'ng-hide' => "editing",  'ng-click' => "edit()" } Edit
 
-  %tab{heading: "Ingredients ({{selectedRecipe.ingredients.length}})"}
+  %tabset
 
-    %table.table.table-striped.table-bordered
-      %tr
-        %th Amount
-        %th Description
-        %th
+    %tab{heading: "Ingredients ({{selectedRecipe.ingredients.length}})"}
 
-      %tr{ 'ng-repeat' => "ingredient in selectedRecipe.ingredients", 'ng-class' => "{strike: ingredient._destroy}" }
-        %td
-          %span{ 'ng-hide' => 'editing' } {{ingredient.amount}} {{ingredient.unit}}
-          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.amount", 'placeholder' => "Amount", 'ng-required' => true }
-          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.unit", 'placeholder' => "Unit", 'ng-required' => true }
-        %td
-          %span{ 'ng-hide' => 'editing' } {{ingredient.description}}
-          %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.description", 'placeholder' => "Description", 'ng-required' => true }
-        %td
-          %a{ 'ng-click' => "deleteIngredient(ingredient)", 'ng-show' => 'editing'} Destroy
+      %table.table.table-striped.table-bordered
+        %tr
+          %th Amount
+          %th Description
+          %th
 
-    %a{'ng-show' => 'editing', 'ng-click' => "addIngredient()" } New Ingredient
+        %tr{ 'ng-repeat' => "ingredient in selectedRecipe.ingredients", 'ng-class' => "{strike: ingredient._destroy}" }
+          %td
+            %span{ 'ng-hide' => 'editing' } {{ingredient.amount}} {{ingredient.unit}}
+            %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.amount", 'placeholder' => "Amount", 'ng-required' => true }
+            %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.unit", 'placeholder' => "Unit", 'ng-required' => true }
+          %td
+            %span{ 'ng-hide' => 'editing' } {{ingredient.description}}
+            %input{ 'ng-show' => 'editing', 'type' => "text", 'ng-model' => "ingredient.description", 'placeholder' => "Description", 'ng-required' => true }
+          %td
+            %a{ 'ng-click' => "deleteIngredient(ingredient)", 'ng-show' => 'editing'} Destroy
+
+      %a{'ng-show' => 'editing', 'ng-click' => "addIngredient()" } New Ingredient
 
 
-  %tab{heading: "Steps ({{selectedRecipe.steps.length}})"}
+    %tab{heading: "Steps ({{selectedRecipe.steps.length}})"}
 
-    %table.table.table-striped.table-bordered
-      %tr
-        %th Position
-        %th Description
-        %th
+      %table.table.table-striped.table-bordered
+        %tr
+          %th Position
+          %th Description
+          %th
 
-      %tr{ 'ng-repeat' => "step in selectedRecipe.steps", 'ng-class' => "{strike: step._destroy}" }
-        %td
-          %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.position}}
-          %input{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.position", 'placeholder' => "Position", 'ng-required' => true }
-        %td
-          %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.description}}
-          %textarea.textbox{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.description", 'placeholder' => "Description", 'ng-required' => true }
-        %td
-          %a{ 'ng-click' => "deleteStep(step)", 'ng-show' => 'editing'} Destroy
+        %tr{ 'ng-repeat' => "step in selectedRecipe.steps", 'ng-class' => "{strike: step._destroy}" }
+          %td
+            %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.position}}
+            %input{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.position", 'placeholder' => "Position", 'ng-required' => true }
+          %td
+            %span{ 'ng-hide' => 'editing&&!step._destroy' } {{step.description}}
+            %textarea.textbox{ 'ng-show' => 'editing&&!step._destroy', 'type' => "text", 'ng-model' => "step.description", 'placeholder' => "Description", 'ng-required' => true }
+          %td
+            %a{ 'ng-click' => "deleteStep(step)", 'ng-show' => 'editing'} Destroy
 
-    %a{ 'ng-show' => 'editing', 'ng-click' => "addStep()"  } New Step
+      %a{ 'ng-show' => 'editing', 'ng-click' => "addStep()"  } New Step
 
-%span{ 'ng-show' => 'editing' }
-  %a.btn.btn-primary{ 'ng-click' => "save()" } Save
-  or
-  %a{ 'ng-click' => "cancel()" } Cancel
+  %span{ 'ng-show' => 'editing' }
+    %a.btn.btn-primary{ 'ng-click' => "save()", "ng-disabled" => "!recipeForm.$valid" } Save
+    or
+    %a{ 'ng-click' => "cancel()" } Cancel
 
