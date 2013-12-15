@@ -21,6 +21,14 @@ app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) -
 
 ]
 
+# From http://codetunes.com/2013/server-form-validation-with-angular/
+app.directive 'serverError', ->
+  restrict: 'A'
+  require: 'ngModel'
+  link: (scope, element, attrs, ctrl) ->
+    scope.$watch "selectedRecipe.title", ->
+      ctrl.$setValidity('server', true)
+
 app.run ["$rootScope", "Recipe", "$location", ($rootScope, Recipe, $location) ->
   $rootScope.recipes = []
   $rootScope.selectedRecipe = null

@@ -5,6 +5,8 @@ class Recipe < ActiveRecord::Base
 
   accepts_nested_attributes_for :ingredients, :steps, allow_destroy: true
   acts_as_taggable
+
+  validates_presence_of :title
 end
 
 # == Schema Information

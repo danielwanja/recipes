@@ -14,9 +14,11 @@
       Title: {{selectedRecipe.title}}
     .field{ 'ng-show' => 'editing', "ng-class" => "{'has-error': recipeForm.title.$invalid}"}
       %label Title
-      %input#title.form-control{ "name" => "title", "ng-model" => "selectedRecipe.title", type: "text", "required" => true, "ng-minlength" => 5}
+      %input#title.form-control{ "name" => "title", "ng-model" => "selectedRecipe.title", type: "text", "required" => false, "ng-minlength" => 5, "server-error" => true}
       %span.help-block{"ng-show" => "recipeForm.title.$dirty && recipeForm.title.$error.required"} Required
       %span.help-block{"ng-show" => "recipeForm.title.$dirty && recipeForm.title.$error.minlength"} At least 5 characters
+      %span.help-block{"ng-show" => "recipeForm.title.$error.server"}
+        {{ errors.title }}
   %p{ 'ng-hide' => 'editing' }
     %b
       Description: {{selectedRecipe.description}}

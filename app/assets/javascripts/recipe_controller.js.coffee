@@ -27,6 +27,7 @@
 
   $scope.save = ->
     $scope.editing = false
+    $scope.errors = {}
     Recipe.setUrl "/users/{{userId}}/recipes/{{id}}"
     try
       call = $scope.selectedRecipe.save({userId: $scope.selectedRecipe.userId})
@@ -37,14 +38,19 @@
       $scope.editing = false
       $scope.loadRecipe($scope.selectedRecipe.id)
 
-    call.catch (error)->
-      msg = "Error:"
-      for attr of error.data.errors
-          validations = error.data.errors[attr]
-          for validation in validations
-            msg += "#{attr} #{validation}"
-      alert msg
+    call.catch (result)->
+      angular.forEach result.data.errors, (errors, field) ->
+        $scope.recipeForm[field].$setValidity('server', false)
+        $scope.errors[field] = errors.join(', ')
+
       $scope.editing = true
+
+      # msg = "Error:"
+      # for attr of result.data.errors
+      #     validations = result.data.errors[attr]
+      #     for validation in validations
+      #       msg += "#{attr} #{validation}"
+      # alert msg
 
   $scope.showRecipes = ()->
     $location.path "/"
