@@ -19,7 +19,11 @@ app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) -
     templateUrl: "/templates/recipe.html"
   ).otherwise redirectTo: "/"
 
+  # protect_from_forgery
+  authToken = angular.element(document.querySelector('meta[name="csrf-token"]')).attr("content")
+  $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ]
+
 
 # From http://codetunes.com/2013/server-form-validation-with-angular/
 app.directive 'serverError', ->
