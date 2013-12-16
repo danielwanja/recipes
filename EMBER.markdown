@@ -141,6 +141,69 @@ would go there.
 
 Now our test passes! Next step, get some actual data on the page.
 
+# Implementing the Home page
+
+So we actually want to see some recipes on the home page, so there are a
+few things that we need to do to make that happen. Since we are
+test-driving this thing, the first thing is an integration test. We'll
+start really simple and then refine it.
+
+`index_test.coffee`:
+```coffeescript
+test 'Has Recipes', ->
+  visit('/').then ->
+    ok(find('.recipe').length, 'There are no recipes on the page')
+```
+
+What we want to do is query for Recipes, and then display them on the
+home page, just like the Rails app. So first, we should define a model,
+based on the Rails model. The excellent ember-rails gem makes this
+pretty easy:
+
+`rails g ember:model recipe title:string description:string image_url:string created_at:date updated_at:date --app-name=app`
+
+Now we have a model that can store the data. Now we need to get the data
+and that is the route's job.
+
+Ember has models, views and controllers and routes, and so does Rails,
+but they are a little different in Ember. Ember's philosophy is a lot
+closer to iOS than it is to Rails. The route is responsible for
+interpreting parameters (on the url) and getting the appropriate data.
+It passes that data to a controller, and loads a template to render the
+page. That means the Route is closest to what a controller is in Rails.
+
+All Ember applications have an implicit 'index' route that maps to '/',
+so let's refine its behavior:
+
+`routes/index_route.js.coffee`:
+```coffeescript
+App.IndexRoute = Ember.Route.extend
+  model: -> @store.find('recipe')
+```
+
+One more thing. While we're still developing the front end, let's set up
+some fixtures so that we have some data that we can use:
+
+`test_helper.coffee`
+```coffeescript
+App.Store = DS.Store.extend({
+  revision: 13,
+  adapter: DS.FixtureAdapter
+});
+```
+
+`index_test.coffee`
+```coffeescript
+module 'Home Page Tests',
+  setup: -> 
+    App.Recipe.FIXTURES = [
+      { id: 1, title: 'Taco', description: 'Crunchy and delicious', image_url: 'http://placekitten.com/72/72'}
+    ]
+    App.reset()
+```
+
+So now we are most of the way there. We just need to create the view:
+
 # Resources
 
 * [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A

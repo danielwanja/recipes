@@ -26,5 +26,10 @@
 document.write('<div id="ember-testing-container" style="display:none;"><div id="ember-testing"></div></div>');
 App.rootElement = '#ember-testing';
 App.setupForTesting();
-App.injectTestHelpers(); 
+App.injectTestHelpers();
+App.Store = DS.Store.extend({
+  revision: 13,
+  adapter: DS.FixtureAdapter
+});
+
 

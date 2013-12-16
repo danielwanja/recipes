@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Twitter Handle</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  {{#each recipe in controller}}
+    <tr class="recipe">
+      <td></td>
+      <td><img class="img-thumbnail" style="width: 64px;" {{bindAttr
+        src=recipe.image_url}}/></td>
+      <td>{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td></td>
+    </tr>
+  {{/each}}
+</table>
+
