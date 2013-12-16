@@ -7,7 +7,9 @@ Recipes::Application.routes.draw do
     end
   end
 
-  resources :recipes, only: [:index, :show]  # Show all recipes
+  resources :recipes, only: [:index, :show]  do # Show all recipes
+    get 'tags', on: :collection
+  end
   resource :search
 
   # AngularJS App

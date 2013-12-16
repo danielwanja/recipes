@@ -3,12 +3,14 @@
     %span.glyphicon.glyphicon-th-list
   %button.btn.btn-default{type: "button", "ng-click" => "showThumbnails()", "ng-class" => "{'btn-primary': viewStyle == 'thumbnails'} "}
     %span.glyphicon.glyphicon-th-large
+  %button.btn.btn-default{type: "button", "ng-click" => "showCloud()", "ng-class" => "{'btn-primary': viewStyle == 'cloud'} "}
+    %span.glyphicon.glyphicon-cloud
 
-%div{ 'ng-include' => "'templates/pagination.html'" }
 
 %div{ "ng-switch" => true,  "on" => "viewStyle" }
 
   #listView{"ng-switch-when" => "list"}
+    %div{ 'ng-include' => "'templates/pagination.html'" }
     %table.table.table-striped.table-bordered
       %tr
         %th
@@ -22,6 +24,7 @@
           %a{ 'ng-click' => "showRecipe(recipe)"} Show
 
   #thumbnailsView{"ng-switch-when" => "thumbnails"}
+    %div{ 'ng-include' => "'templates/pagination.html'" }
     .row
       .col-sm-6.col-md-4{ 'ng-repeat' => "recipe in recipes", 'ng-click' => "showRecipe(recipe)" }
         .thumbnail
@@ -29,4 +32,7 @@
           .caption
             {{ recipe.title }}
 
-%div{ 'ng-include' => "'templates/pagination.html'" }
+  #thumbnailsView{"ng-switch-when" => "cloud"}
+    %nav
+      %a{ 'ng-repeat' => "tag in tags", 'ng-click' => "selectTag(tag)", "ng-class" => "{{tag.css}}" } {{tag.name}}
+

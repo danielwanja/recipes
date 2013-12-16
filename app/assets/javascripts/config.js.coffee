@@ -15,13 +15,16 @@ app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) -
 ]
 
 app.factory "Recipe", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
-  railsResourceFactory
+  Recipe = railsResourceFactory
     url: "/recipes"
     name: "recipe"
     pluralName: "recipes"
     serializer: railsSerializer(->
       @nestedAttribute "ingredients", "steps"
     )
+  Recipe.getTags = ->
+    @$get @$url() + "/tags.json"
+  Recipe
 ]
 
 # From http://codetunes.com/2013/server-form-validation-with-angular/

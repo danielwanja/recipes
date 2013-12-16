@@ -2,6 +2,10 @@ class RecipesController < InheritedResources::Base
   respond_to :html, :json
   belongs_to :user, :optional => true
 
+  def tags
+    respond_with(Recipe.tag_counts)
+  end
+
   protected
 
   def permitted_params

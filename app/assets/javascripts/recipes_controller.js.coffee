@@ -1,10 +1,13 @@
 @RecipesController = ($scope, $rootScope, Recipe, $location, $route, $routeParams) ->
 
-  $scope.load = (page)->
+  $scope.load = (page, tag)->
     options = null
     if page?
       options ?= {}
       options['page'] = page
+    if tag?
+      options ?= {}
+      options['tag'] = tag
     if $rootScope.searchCriteria? and $rootScope.searchCriteria != ""
       options ?= {}
       options['search'] = $rootScope.searchCriteria
@@ -15,6 +18,9 @@
       $scope.pagination.hasNext = pagination.currentPage<pagination.totalPages
       $scope.recipes = pagination.entries
     call # Return this for testing purpose. TODO: find a nicer way
+
+  $scope.showRecipe = (recipe)->
+    $location.path "/recipe/#{recipe.id}"
 
   $scope.nextPage = ->
     $scope.load($scope.pagination.currentPage+1) if $scope.pagination.hasNext
@@ -28,8 +34,24 @@
   $scope.showThumbnails = ->
     $scope.viewStyle = "thumbnails"
 
-  $scope.showRecipe = (recipe)->
-    $location.path "/recipe/#{recipe.id}"
+  $scope.showCloud = ->
+    $scope.previousViewStyle = $scope.viewStyle
+    $scope.viewStyle = "cloud"
+    $scope.loadCloud()
+
+  $scope.loadCloud = ->
+    Recipe.getTags().then (tags) ->
+      max = Math.max(tags.map (tag) -> tag.count)
+      css_classes = ['css1', 'ccs2', 'css3', 'css4']
+      for tag in tags
+        index = ((tag.count/max)*(css_classes.length-1))
+        tag.index = if isNaN(index) then 0 else Math.round(index)
+        tag.css = css_classes[tag.index]
+      $scope.tags = tags
+
+  $scope.selectTag = (tag)->
+    $scope.viewStyle = $scope.previousViewStyle
+    $scope.load(null, tag.name)
 
   $scope.$on 'searchEvent', (event,criteria)->
     $scope.load()

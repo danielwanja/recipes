@@ -47,3 +47,11 @@ describe "RecipeResourceSpec", ->
       done()
     $httpBackend.flush()
 
+  async.it "should get tag clouds", (done)->
+    $httpBackend.expectGET(window.fixtures.TAGS_CALL.request).respond(200, window.fixtures.TAGS_CALL.response)
+    Recipe.getTags().then (tags) ->
+      expect(tags.length).toBe(51)
+      expect(tags[0].name).toBe("Cake")
+      expect(tags[0].count).toBe(3)
+      done()
+    $httpBackend.flush()
