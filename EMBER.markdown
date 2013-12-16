@@ -44,4 +44,27 @@ test 'Is this thing on?', ->
 
 And the test runner runs it properly
 
+## Hooking up Ember
+
+One of the awesome things about Ember is how nicely it plays with Rails.
+Stands to reason because there is good overlap between their core team
+members. The [Ember Rails]() gem works marvelously with Rails and
+integrates with the asset pipeline.
+
+
+`Gemfile`:
+```ruby
+gem 'ember-rails'
+gem 'ember-source', '1.2.0'
+```
+
+Now get Ember set up. I like to change the app name to 'app' because
+that's what most of the Ember examples seem to use.
+
+```
+bundle install
+rails g ember:bootstrap --coffee --app-name=app
+```
+
+Get rid of the old `application.js file` and we're good to go.
 

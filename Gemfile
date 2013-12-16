@@ -57,6 +57,8 @@ group :development, :test do
   gem 'pry'
 end
 
+gem 'ember-rails'
+gem 'ember-source', '1.2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
