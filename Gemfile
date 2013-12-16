@@ -32,7 +32,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
 gem 'textacular', '~> 3.0'
 gem 'schema_plus', '1.2.0'
 
@@ -59,6 +58,8 @@ end
 
 gem 'ember-rails'
 gem 'ember-source', '1.2.0'
+gem 'ember-data-source', '1.0.0.beta.3'
+gem 'active_model_serializers'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

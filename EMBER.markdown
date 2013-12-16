@@ -204,6 +204,62 @@ module 'Home Page Tests',
 
 So now we are most of the way there. We just need to create the view:
 
+```handlebars
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Twitter Handle</th>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  {{#each recipe in controller}}
+    <tr class="recipe">
+      <td></td>
+      <td><img class="img-thumbnail" style="width: 64px;" {{bindAttr
+        src=recipe.image_url}}/></td>
+      <td>{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td></td>
+    </tr>
+  {{/each}}
+</table>
+```
+
+There is a bit of magic going on behind the scenes. We have overridden
+the route's default behavior to load a list of recipes and Ember creates
+a controller to hold the data. The `#each` grabs each of the elements in
+the array the route put in and iterates through them.
+
+## Hooking up real data
+
+We are going to use Ember's `ember-data` library to load and store data from the
+server. One of the nice things about ember-data is that it has an
+adapter that works with `active_model_serializers` out of the box.
+
+`Gemfile`:
+```ruby
+# gem 'jbuilder' # Remove jbuilder or nothing will work
+gem 'ember-data-source', '1.0.0.beta.3'
+gem 'active_model_serializers'
+```
+
+Now going to the home page, we get a somewhat cryptic error that it
+cannot call `forEach` on `undefined`. Chances are the data that the
+server is sending back is not quite what ember-data wants. Let's change
+things over to use active_model_serializers.
+
+`rails g serializer recipe`
+
+`app/serializers/recipe_serializer.rb`:
+```ruby
+class RecipeSerializer < ActiveModel::Serializer
+  attributes :id, :title, :description, :image_url, :updated_at, :created_at
+end
+```
+
+Now, magically, going to the home page brings up the recipes
+
 # Resources
 
 * [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A

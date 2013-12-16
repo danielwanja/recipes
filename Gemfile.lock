@@ -47,7 +47,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    ember-data-source (0.14)
+    ember-data-source (1.0.0.beta.3)
       ember-source
     ember-rails (0.14.1)
       active_model_serializers
@@ -80,9 +80,6 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (1.5.2)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -176,15 +173,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   acts-as-taggable-on
   annotate
   coffee-rails (~> 4.0.0)
+  ember-data-source (= 1.0.0.beta.3)
   ember-rails
   ember-source (= 1.2.0)
   google-search
   haml-rails
   inherited_resources
-  jbuilder (~> 1.2)
   jquery-rails
   kaminari
   pg

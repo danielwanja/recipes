@@ -3,6 +3,6 @@
 App.Recipe = DS.Model.extend
   title: DS.attr 'string'
   description: DS.attr 'string'
-  imageUrl: DS.attr 'string'
-  createdAt: DS.attr 'date'
-  updatedAt: DS.attr 'date'
+  image_url: DS.attr 'string'
+  created_at: DS.attr 'date'
+  updated_at: DS.attr 'date'
