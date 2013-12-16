@@ -25,6 +25,9 @@
     .field{ 'ng-show' => 'editing' }
       %label Description
       %textarea#recipe_description.form-control{ "ng-model" => "selectedRecipe.description" }
+  %p
+    %span{ 'ng-hide' => 'editing' } {{selectedRecipe.tagList.join(", ")}}
+    %tags-input{ "ng-model" => "selectedRecipe.tagList", 'ng-show' => 'editing' }
 
   %a.btn.btn-primary{ 'ng-hide' => "editing",  'ng-click' => "edit()" } Edit
 

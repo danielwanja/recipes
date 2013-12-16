@@ -10,6 +10,7 @@ class RecipesController < InheritedResources::Base
 
   def permitted_params
     params.permit(recipe: [:title, :description, :image_url,
+                              :tag_list => [],
                               :ingredients_attributes => ["id", "amount", "unit", "description", "recipe_id", "_destroy"],
                               :steps_attributes => ["id", "position", "description", "recipe_id", "_destroy"]])
   end

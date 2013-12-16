@@ -1,4 +1,4 @@
-app = angular.module("recipe-project", ['ngRoute', 'rails', 'ui.bootstrap'])
+app = angular.module("recipe-project", ['ngRoute', 'rails', 'ui.bootstrap', 'ngTagsInput'])
 
 app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) ->
   $routeProvider.when("/",

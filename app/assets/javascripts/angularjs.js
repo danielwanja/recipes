@@ -5,3 +5,4 @@
 //= require angularjs/rails/resource
 //= require angularjs/ui-bootstrap-0.7.0
 //= require angularjs/ui-bootstrap-tpls-0.7.0
+//= require angularjs/ng-tags-input
