@@ -107,7 +107,39 @@ and teardown tasks. `App.reset()` resets the state of the Ember
 application to create a clean slate between tests. The test is looking
 for an element with class 'search'.
 
-So now we have a failing test, looking for a search box.
+So now we have a failing test, looking for a search box. So let's make
+that test pass.
+
+# Implementing Layout
+
+Ember is all about mapping URLs (Routes) to Application State (nested
+controllers) At the top level of all of this is 'Application'.
+
+[] Explain relationship between route, controller, template
+
+So what we would refer to as the 'application' layout in Rails land goes
+into the `application` template. Any UI that needs to be on every page
+would go there.
+
+```handlebars
+<div class="container">
+  <div class="nav navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      {{#linkTo '' class="navbar-brand"}}Super Cookbook{{/linkTo}}
+    </div>
+    <form action="" method="get" accept-charset="utf-8"
+    class="navbar-form navbar-right">
+      <div class="form-group">
+        <input class="form-control search" type="text" name="query" value="" placeholder="Search Recipes" role="search" />
+      </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+  {{outlet}}
+</div>
+```
+
+Now our test passes! Next step, get some actual data on the page.
 
 # Resources
 

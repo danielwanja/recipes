@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="nav navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      {{#linkTo '' class="navbar-brand"}}Super Cookbook{{/linkTo}}
+    </div>
+    <form action="" method="get" accept-charset="utf-8"
+    class="navbar-form navbar-right">
+      <div class="form-group">
+        <input class="form-control search" type="text" name="query" value="" placeholder="Search Recipes" role="search" />
+      </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+  {{outlet}}
+</div>
+
