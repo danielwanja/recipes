@@ -52,9 +52,11 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'teaspoon'
   gem 'annotate'
   gem 'pry'
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
