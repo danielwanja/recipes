@@ -6,25 +6,50 @@
     <li class="active">
       <a data-toggle="tab" href="#ingredients">Ingredients</a>
     </li>
-    <li class="active">
+    <li>
       <a data-toggle="tab" href="#steps">Steps</a>
     </li>
   </ul>
   <div class="tab-content">
     <div id="ingredients" class="tab-pane active">
-      {{#each ingredient in ingredients}}
-        <div class="ingredient">
-          {{ingredient.amount}} {{ingredient.unit}}
-          {{ingredient.description}}
-        </div>
-      {{/each}} 
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th>Amount</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+        </tr>
+        {{#each ingredient in ingredients}}
+          <tr class="ingredient">
+            <td>
+              {{ingredient.amount}}
+              {{ingredient.unit}}
+            </td>
+            <td>
+              {{ingredient.description}}
+            </td>
+            <td>Edit</td>
+            <td>Destroy</td> 
+          </tr>
+        {{/each}} 
+      </table>
     </div>
     <div id="steps" class="tab-pane">
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th>Position</th>
+          <th>Description</th>
+          <th></th>
+          <th></th>
+        </tr>
       {{#each step in steps}}
-      <div class="step">
-        {{step.description}}
-      </div>
+      <tr class="step">
+        <td>{{step.position}}</td>
+        <td>{{step.description}} </td>
+        <td>Edit</td>
+        <td>Destroy</td>
+      </tr>
       {{/each}}
-    </div>
+    </table>
   </div>
 </div>
