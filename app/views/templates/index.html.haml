@@ -1,13 +1,32 @@
+.btn-group
+  %button.btn.btn-default{type: "button", "ng-click" => "showList()", "ng-class" => "{'btn-primary': viewStyle == 'list'} "}
+    %span.glyphicon.glyphicon-th-list
+  %button.btn.btn-default{type: "button", "ng-click" => "showThumbnails()", "ng-class" => "{'btn-primary': viewStyle == 'thumbnails'} "}
+    %span.glyphicon.glyphicon-th-large
+
 %div{ 'ng-include' => "'templates/pagination.html'" }
-%table.table.table-striped.table-bordered
-  %tr
-    %th
-    %th Title
-    %th
-  %tr{ 'ng-repeat' => "recipe in recipes" }
-    %td
-      %img{ 'ng-src' => "{{recipe.imageUrl}}", class: 'img-thumbnail', style: 'width:64px' }
-    %td {{ recipe.title }}
-    %th
-      %a{ 'ng-click' => "showRecipe(recipe)"} Show
+
+%div{ "ng-switch" => true,  "on" => "viewStyle" }
+
+  #listView{"ng-switch-when" => "list"}
+    %table.table.table-striped.table-bordered
+      %tr
+        %th
+        %th Title
+        %th
+      %tr{ 'ng-repeat' => "recipe in recipes" }
+        %td
+          %img{ 'ng-src' => "{{recipe.imageUrl}}", class: 'img-thumbnail', style: 'width:64px' }
+        %td {{ recipe.title }}
+        %td
+          %a{ 'ng-click' => "showRecipe(recipe)"} Show
+
+  #thumbnailsView{"ng-switch-when" => "thumbnails"}
+    .row
+      .col-sm-6.col-md-4{ 'ng-repeat' => "recipe in recipes" }
+        .thumbnail
+          %img{ 'ng-src' => "{{recipe.imageUrl}}", style: 'width:180px; height:200px' }
+          .caption
+            {{ recipe.title }}
+
 %div{ 'ng-include' => "'templates/pagination.html'" }

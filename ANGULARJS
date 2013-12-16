@@ -62,14 +62,13 @@ http://www.slideshare.net/JamieDavidson2/rails-angular-meetup
 
 Several choices:
 
+* $http
 * ngResource
 * restangular https://github.com/mgonto/restangular
 * angularjs-rails-resource  https://github.com/FineLinePrototyping/angularjs-rails-resource
 
-I haven't used restangular before, so I will try it out and hopefully it will work flawlessly.
-Ok I tried restangular and will create a version with it, however it doesn't support nested attributes which I want to use to update a recipe. So based on that there is limited time left before the presentation, I will switch to AngularJS Rails Resource.
+For this presentation I first tried restangular and it works quite nicely, however I wanted to show using nested attributes which is directly supported by angularjs-rails-resource. So switched to AngularJS Rails Resource.
 
-Note restangular depends on the lodash library. This bit me :-P
 
 ## Building out the UI with Angular templates
 
@@ -94,7 +93,16 @@ Use https://github.com/angular-ui/bootstrap/tree/bootstrap3
 * https://github.com/mgonto/restangular/blob/master/test/restangularSpec.js
 * http://docs.angularjs.org/api/ngMock.$httpBackend
 * http://www.tuesdaydeveloper.com/2013/06/angularjs-testing-with-karma-and-jasmine/
+* http://codetunes.com/2013/server-form-validation-with-angular/
+* http://www.ng-newsletter.com/posts/validations.html
 
-## TODO: 
+## Slides
 
-[ ] reenable protect_from_forgery
+To install:
+  $ gem install slideshow
+  $ slideshow install impress.js
+
+To build:
+  slideshow build impress.js.text -t impress.js
+
+## TODO:

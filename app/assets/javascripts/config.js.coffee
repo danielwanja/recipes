@@ -1,15 +1,5 @@
 app = angular.module("recipe-project", ['ngRoute', 'rails', 'ui.bootstrap'])
 
-app.factory "Recipe", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
-  railsResourceFactory
-    url: "/recipes"
-    name: "recipe"
-    pluralName: "recipes"
-    serializer: railsSerializer(->
-      @nestedAttribute "ingredients", "steps"
-    )
-]
-
 app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) ->
   $routeProvider.when("/",
     controller: RecipesController
@@ -24,6 +14,15 @@ app.config ['$routeProvider', "$httpProvider", ($routeProvider, $httpProvider) -
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ]
 
+app.factory "Recipe", ["railsResourceFactory", "railsSerializer", (railsResourceFactory, railsSerializer) ->
+  railsResourceFactory
+    url: "/recipes"
+    name: "recipe"
+    pluralName: "recipes"
+    serializer: railsSerializer(->
+      @nestedAttribute "ingredients", "steps"
+    )
+]
 
 # From http://codetunes.com/2013/server-form-validation-with-angular/
 app.directive 'serverError', ->

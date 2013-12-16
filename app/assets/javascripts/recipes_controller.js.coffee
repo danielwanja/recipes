@@ -23,8 +23,10 @@
     $scope.load($scope.pagination.currentPage-1) if $scope.pagination.hasPrevious
 
   $scope.showList = ->
+    $scope.viewStyle = "list"
 
   $scope.showThumbnails = ->
+    $scope.viewStyle = "thumbnails"
 
   $scope.showRecipe = (recipe)->
     $location.path "/recipe/#{recipe.id}"
@@ -36,6 +38,7 @@
   # Initialization
   #--------------------------------------------------------------------
 
+  $scope.viewStyle = "thumbnails"
   $scope.load()
 
 @RecipesController.$inject = ['$scope', '$rootScope', 'Recipe', '$location', '$route', '$routeParams'];
