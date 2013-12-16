@@ -275,13 +275,31 @@ module 'Showing a recipe',
     App.reset()
 
 test 'Shows a recipe', ->
-  visit('/recipe/1').then -> 
-    ok(find('.title').innerText() == 'Taco', 'Title not present')
-    ok(find('.description').innerText() == 'Crunchy and delicious', 'Description not present')
+  visit('/recipe/1').then ->
+    ok(find('.recipe').length, 'Recipe not present')
+    ok(find('.title').text().indexOf('Taco'), 'Title not present')
+    ok(find('.description').text().indexOf('Crunchy and delicious'), 'Description not present')
 ```
 
 Running this test shows an assertion failure that there is no route, so
 let's start there.
+
+`router.js.coffee`:
+```coffeescript
+App.Router.map ()->
+  @resource 'recipe', path: '/recipe/:id'
+```
+
+Now we need to define a route that gets the recipe:
+
+And a template to render it:
+`templates/recipe.hbs`:
+```handlebars
+<div class="recipe">
+  <p class="title"><b> Title:</b> {{title}} </p>
+  <p class="description"><b>Description:</b> {{description}} </p>
+</div>
+```
 
 # Resources
 

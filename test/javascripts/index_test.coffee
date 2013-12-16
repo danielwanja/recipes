@@ -7,6 +7,9 @@ module 'Home Page Tests',
 
 test 'Search box on home page', ->
   visit('/').then -> ok(find('.search').length, 'Search box not present')
+
 test 'Has Recipes', ->
   visit('/').then ->
     ok(find('.recipe').length, 'There are no recipes on the page')
+
+

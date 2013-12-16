@@ -6,7 +6,8 @@ module 'Showing a recipe',
     App.reset()
 
 test 'Shows a recipe', ->
-  visit('/recipe/1').then -> 
-    ok(find('.title').innerText() == 'Taco', 'Title not present')
-    ok(find('.description').innerText() == 'Crunchy and delicious', 'Description not present')
+  visit('/recipe/1').then ->
+    ok(find('.recipe').length, 'Recipe not present')
+    ok(find('.title').text().indexOf('Taco'), 'Title not present')
+    ok(find('.description').text().indexOf('Crunchy and delicious'), 'Description not present')
 
