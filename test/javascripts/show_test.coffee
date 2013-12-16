@@ -1,7 +1,23 @@
 module 'Showing a recipe',
   setup: -> 
+    App.User.FIXTURES = [
+      { id: '1', twitter_handle: 'testy' }
+    ]
+    App.Ingredient.FIXTURES = [
+      { id: '1', recipe: '1', amount: '1', unit: 'shell', description: 'Taco Shell' }
+    ]
+    App.Step.FIXTURES = [
+      { id: '1', position: 1, description: 'Put filling in shell' }
+    ]    
     App.Recipe.FIXTURES = [
-      { id: 1, user_id: 1, title: 'Taco', description: 'Crunchy and delicious', image_url: 'http://placekitten.com/72/72'}
+      { 
+        id: '1', title: 'Taco', 
+        description: 'Crunchy and delicious', 
+        image_url: 'http://placekitten.com/72/72',
+        user: '1',
+        ingredients: ['1'],
+        steps: ['1']
+      }
     ]
     App.reset()
 

@@ -360,6 +360,23 @@ test 'Shows Ingredients', ->
     ok(find('.ingredient').length, 'Ingredients not present')
 ```
 
+Let's define the relationships in the recipe class:
+
+```coffeescript
+App.Recipe = DS.Model.extend
+  title: DS.attr 'string'
+  description: DS.attr 'string'
+  image_url: DS.attr 'string'
+  created_at: DS.attr 'date'
+  updated_at: DS.attr 'date'
+
+  user: DS.belongsTo('user')
+  ingredients: DS.hasMany('ingredient')
+  steps: DS.hasMany('step')
+```
+
+
+
 
 # Resources
 

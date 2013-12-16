@@ -3,3 +3,4 @@ App.Ingredient = DS.Model.extend
   amount: DS.attr 'string'
   unit: DS.attr 'string'
   description: DS.attr 'string'
+  recipe: DS.belongsTo('recipe')

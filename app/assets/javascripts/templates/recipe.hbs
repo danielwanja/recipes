@@ -1,4 +1,30 @@
 <div class="recipe">
+  <p class="user"><b>User:</b> {{user.twitter}}</p>
   <p class="title"><b> Title:</b> {{title}} </p>
   <p class="description"><b>Description:</b> {{description}} </p>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a data-toggle="tab" href="#ingredients">Ingredients</a>
+    </li>
+    <li class="active">
+      <a data-toggle="tab" href="#steps">Steps</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div id="ingredients" class="tab-pane active">
+      {{#each ingredient in ingredients}}
+        <div class="ingredient">
+          {{ingredient.amount}} {{ingredient.unit}}
+          {{ingredient.description}}
+        </div>
+      {{/each}} 
+    </div>
+    <div id="steps" class="tab-pane">
+      {{#each step in steps}}
+      <div class="step">
+        {{step.description}}
+      </div>
+      {{/each}}
+    </div>
+  </div>
 </div>
