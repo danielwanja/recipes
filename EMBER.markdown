@@ -68,3 +68,48 @@ rails g ember:bootstrap --coffee --app-name=app
 
 Get rid of the old `application.js file` and we're good to go.
 
+## Start on the UI
+
+So first things first: need to get the application layout set up in
+Ember. But since we want to test-drive things, there are a few things
+that need to be set up.
+
+Let's start with a really simple integration test:
+
+`index_test.coffee`
+```coffeescript
+module 'Home Page Tests',
+  setup: -> App.reset()
+test 'Search box on home page', ->
+  visit('/').then -> ok(find('.search').length, 'Search box not present')
+```
+
+Of course this test doesn't work at all. That's because we need to make
+sure that Ember is set up for testing, and that all the right resources
+are included. But this is why I like to start with something really
+simple - it keeps the number of variables down. Looking at the error, we
+can't find the test helpers, so if we follow the instructions in the
+Ember testing guide:
+
+`test_helper.coffee`
+```coffeescript
+document.write('<div id="ember-testing-container" style="display:none;"><div id="ember-testing"></div></div>');
+App.rootElement = '#ember-testing'; # Output into fixture element
+App.setupForTesting();              # Defers readyness until test run
+App.injectTestHelpers();            # Adds test methods to window class
+```
+
+These past two sections deserve some further explanation.
+
+The module statement above defines a suite of tests. All test below the
+module statement are grouped together, and you can define common setup
+and teardown tasks. `App.reset()` resets the state of the Ember
+application to create a clean slate between tests. The test is looking
+for an element with class 'search'.
+
+So now we have a failing test, looking for a search box.
+
+# Resources
+
+* [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A
+  great starting place for Ember applications with 

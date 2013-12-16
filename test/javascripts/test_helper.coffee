@@ -22,3 +22,9 @@
 #
 # You can require javascript files here. A good place to start is by requiring your application.js.
 #= require application
+
+document.write('<div id="ember-testing-container" style="display:none;"><div id="ember-testing"></div></div>');
+App.rootElement = '#ember-testing';
+App.setupForTesting();
+App.injectTestHelpers(); 
+
