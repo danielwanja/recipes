@@ -41,8 +41,9 @@
 
   $scope.loadCloud = ->
     Recipe.getTags().then (tags) ->
-      max = Math.max(tags.map (tag) -> tag.count)
-      css_classes = ['css1', 'ccs2', 'css3', 'css4']
+      counts = tags.map (tag) -> tag.count
+      max = Math.max(counts...)
+      css_classes = ['css1', 'css2', 'css3', 'css4']
       for tag in tags
         index = ((tag.count/max)*(css_classes.length-1))
         tag.index = if isNaN(index) then 0 else Math.round(index)
