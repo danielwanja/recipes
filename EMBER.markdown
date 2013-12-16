@@ -301,6 +301,66 @@ And a template to render it:
 </div>
 ```
 
+Now the test passes and we can even go in or browser and look at a
+recipe: http://localhost:3000/#/recipe/1
+
+## Link to recipes from home page
+
+Let's now hook up the links on the home page:
+
+`index_test.coffee`:
+```coffeescript
+test 'Links to recipes', ->
+  visit('/').then ->
+    ok(find('a[href="/recipe/1"]').length, 'No recipe link')
+```
+
+Let's use the handy 'linkTo' helper to generate a link to a recipe page:
+
+`index.hbs`:
+```handlebars
+  {{#each recipe in controller}}
+    <tr class="recipe">
+      <td></td>
+      <td><img class="img-thumbnail" style="width: 64px;" 
+        {{bindAttr src=recipe.image_url}}/></td>
+      <td>{{recipe.title}}</td>
+      <td>{{recipe.description}}</td>
+      <td>{{#linkTo 'recipe' recipe}}Show{{/linkTo}}</td>
+    </tr>
+  {{/each}}
+```
+
+## Showing user, ingredients and steps
+
+Recipes belong to users and have steps and ingredients, so we need to
+show the steps and ingredients in the recipe.
+
+Let's create some models:
+
+```
+rails g ember:model user twitter:string --app-name=app
+rails g ember:model ingredient amount:string unit:string description:string --app-name=app
+rails g ember:model step position:integer description:string --app-name=app
+```
+
+Let's start with some simple tests:
+`show_test.coffee`:
+```coffeescript
+test 'Shows a user', ->
+  visit('/recipe/1').then ->
+    ok(find('.user').text().indexOf('testy'), 'User not present')
+
+test 'Shows Steps', ->
+  visit('/recipe/1').then ->
+    ok(find('.step').length, 'Steps not present')
+
+test 'Shows Ingredients', ->
+  visit('/recipe/1').then ->
+    ok(find('.ingredient').length, 'Ingredients not present')
+```
+
+
 # Resources
 
 * [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A

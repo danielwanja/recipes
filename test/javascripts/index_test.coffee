@@ -12,4 +12,6 @@ test 'Has Recipes', ->
   visit('/').then ->
     ok(find('.recipe').length, 'There are no recipes on the page')
 
-
+test 'Links to recipes', ->
+  visit('/').then ->
+    ok(find('a[href="/recipe/1"]').length, 'No recipe link')

@@ -13,7 +13,7 @@
         {{bindAttr src=recipe.image_url}}/></td>
       <td>{{recipe.title}}</td>
       <td>{{recipe.description}}</td>
-      <td></td>
+      <td>{{#linkTo 'recipe' recipe}}Show{{/linkTo}}</td>
     </tr>
   {{/each}}
 </table>
