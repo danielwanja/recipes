@@ -260,6 +260,29 @@ end
 
 Now, magically, going to the home page brings up the recipes
 
+## Show page for recipe
+
+Now, let's get the page to show a recipe up and running. Since we are
+doing this TDD-Style, let's start with a test:
+
+`test/javascripts/show_test.coffee`:
+```coffeescript
+module 'Showing a recipe',
+  setup: -> 
+    App.Recipe.FIXTURES = [
+      { id: 1, title: 'Taco', description: 'Crunchy and delicious', image_url: 'http://placekitten.com/72/72'}
+    ]
+    App.reset()
+
+test 'Shows a recipe', ->
+  visit('/recipe/1').then -> 
+    ok(find('.title').innerText() == 'Taco', 'Title not present')
+    ok(find('.description').innerText() == 'Crunchy and delicious', 'Description not present')
+```
+
+Running this test shows an assertion failure that there is no route, so
+let's start there.
+
 # Resources
 
 * [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A
