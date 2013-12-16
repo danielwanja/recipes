@@ -23,7 +23,7 @@
 
   #thumbnailsView{"ng-switch-when" => "thumbnails"}
     .row
-      .col-sm-6.col-md-4{ 'ng-repeat' => "recipe in recipes" }
+      .col-sm-6.col-md-4{ 'ng-repeat' => "recipe in recipes", 'ng-click' => "showRecipe(recipe)" }
         .thumbnail
           %img{ 'ng-src' => "{{recipe.imageUrl}}", style: 'width:180px; height:200px' }
           .caption
