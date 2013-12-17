@@ -18,3 +18,5 @@
 # Common Files
 .DS_Store
 .rvmrc
+
+/slides/RecipesOnAngularJSWithRails.key
