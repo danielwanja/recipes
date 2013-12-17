@@ -3,7 +3,6 @@ require 'open-uri'
 require 'zip'
 
 class RecipeDownloader
-  # Tiffanys-Pumpkin-Cupcake
   BASE_URL = "http://dsquirrel.tripod.com/xmlzips/RecipeMLArchive{1}.zip"
 
   def parse_all(user)
@@ -87,6 +86,6 @@ class RecipeDownloader
   def get_image_url(name)
     name = name.gsub(/[^A-Za-z0-9]/, " ")
     images = Google::Search::Image.new(:query => name, imgsz: "small")
-    images.first.uri if images.first
+    images.first.uri if images.first rescue nil
   end
 end
