@@ -46,7 +46,7 @@
       css_classes = ['css1', 'css2', 'css3', 'css4']
       for tag in tags
         index = ((tag.count/max)*(css_classes.length-1))
-        tag.index = if isNaN(index) then 0 else Math.round(index)
+        tag.index = (if isNaN(index) then 0 else Math.round(index))+1
         tag.css = css_classes[tag.index]
       $scope.tags = tags
 

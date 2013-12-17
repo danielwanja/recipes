@@ -34,5 +34,5 @@
 
   #thumbnailsView{"ng-switch-when" => "cloud"}
     %nav
-      %a{ 'ng-repeat' => "tag in tags", 'ng-click' => "selectTag(tag)", "class" => "{{tag.css}}", "ng-if" => "tag.index>1" } {{tag.name}}
+      %a{ 'ng-repeat' => "tag in tags", 'ng-click' => "selectTag(tag)", "class" => "{{tag.css}}", 'ng-if' => "tag.index>1" } {{tag.name}}
 
