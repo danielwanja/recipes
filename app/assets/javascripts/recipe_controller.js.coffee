@@ -1,7 +1,7 @@
 @RecipeController = ($scope, $rootScope, Recipe, $location, $routeParams) ->
 
   $scope.loadRecipe = (id)->
-    Recipe.get(id).then (recipe)->
+    Recipe.get(id, {t: new Date().getTime()}).then (recipe)->
       $scope.selectedRecipe = recipe
 
   $scope.edit = ->
