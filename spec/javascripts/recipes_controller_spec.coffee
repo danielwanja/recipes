@@ -34,8 +34,7 @@ describe "RecipesControllerSpec", ->
     # Automatic Load
     $httpBackend.expectGET(window.fixtures.LIST_CALL.request).respond(200, window.fixtures.LIST_CALL.response)
 
-  it "should add two digits", ->
-    expect(1).toBe(1)
+  it "should be defined", ->
     expect(window.RecipesController).toBeDefined();
 
   async.it "should load recipes", (done)->
