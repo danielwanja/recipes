@@ -381,4 +381,18 @@ App.Recipe = DS.Model.extend
 # Resources
 
 * [Ember App Kit](https://github.com/stefanpenner/ember-app-kit) - A
-  great starting place for Ember applications with 
+  great starting place for Ember applications with
+
+* [Ember Data Example](https://github.com/dgeb/ember_data_example)
+
+* [Ember Testing Example](https://github.com/toranb/ember-testing-example)
+
+* [Ordr Testing Example](http://pixelhandler.com/blog/2013/08/15/testing-an-ember-application-integration-and-unit-tests/) - Good example of testing controllers
+
+* [Ember Testing and the run loop](http://www.thesoftwaresimpleton.com/blog/2012/04/03/testing-ember-and-the-runloop/)
+
+* [Ember Testing Example](https://github.com/practicefusion/karma-requirejs-qunit-ember-tdd)
+
+* [Unit testing multiple controllers](http://discuss.emberjs.com/t/unit-testing-multiple-controllers-in-emberjs/1865)
+
+* [Contributing to Ember](https://github.com/emberjs/ember.js/blob/master/CONTRIBUTING.md) - links to latest jsfiddle or jsbin
