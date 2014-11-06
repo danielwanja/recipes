@@ -26,6 +26,7 @@ module Recipes
       allow do
         origins '*' # '*.blinker.com'
         resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
+        credentials true
       end
     end
 
