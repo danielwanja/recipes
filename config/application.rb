@@ -25,8 +25,7 @@ module Recipes
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors, :debug => true, :logger => Rails.logger do
       allow do
         origins '*' # '*.blinker.com'
-        resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
-        credentials true
+        resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options], :credentials => true
       end
     end
 
