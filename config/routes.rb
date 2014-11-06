@@ -25,6 +25,10 @@ Recipes::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'templates#app'
 
+
+  # FROM: http://stackoverflow.com/questions/19883497/heroku-rails-cors-issue
+  match '*path', to: 'application#cors_preflight_check', via: [:options]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
