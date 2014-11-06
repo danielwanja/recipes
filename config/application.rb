@@ -21,12 +21,12 @@ module Recipes
     # config.i18n.default_locale = :de
 
     # rack-cors
-    config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, :debug => true, :logger => Rails.logger do
-      allow do
-        origins '*' # '*.blinker.com'
-        resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
-      end
-    end
+    # config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, :debug => true, :logger => Rails.logger do
+    #   allow do
+    #     origins '*' # '*.blinker.com'
+    #     resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
+    #   end
+    # end
 
   end
 end
