@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   after_action :no_cache
 
   # FROM: http://stackoverflow.com/questions/19883497/heroku-rails-cors-issue
-  def cors_preflight_check
-    headers['Access-Control-Max-Age'] = '1728000'
-
-    render json: {} # Render as you need
-  end
+  # def cors_preflight_check
+  #   headers['Access-Control-Max-Age'] = '1728000'
+  #
+  #   render json: {} # Render as you need
+  # end
 
   protected
 

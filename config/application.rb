@@ -22,20 +22,20 @@ module Recipes
 
     # CORS: rack-cors (didn't work)
     # rack-cors
-    # config.middleware.insert_after Rails::Rack::Logger, Rack::Cors, :debug => true, :logger => Rails.logger do
-    #   allow do
-    #     origins '*' # '*.blinker.com'
-    #     resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
-    #   end
-    # end
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors, :debug => true, :logger => Rails.logger do
+      allow do
+        origins '*' # '*.blinker.com'
+        resource '*', :headers => :any, :methods => [:head, :get, :post, :put, :patch, :delete, :options]
+      end
+    end
 
     # FROM: http://stackoverflow.com/questions/19883497/heroku-rails-cors-issue
-    config.action_dispatch.default_headers = {
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Allow-Methods' => 'POST, PUT, PATCH, DELETE, GET, OPTIONS',
-      'Access-Control-Request-Method' => '*',
-      'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    }
+    # config.action_dispatch.default_headers = {
+    #   'Access-Control-Allow-Origin' => '*',
+    #   'Access-Control-Allow-Methods' => 'POST, PUT, PATCH, DELETE, GET, OPTIONS',
+    #   'Access-Control-Request-Method' => '*',
+    #   'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    # }
 
   end
 end
