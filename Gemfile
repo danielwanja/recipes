@@ -48,6 +48,7 @@ gem 'kaminari'
 
 # AngularJS Rails Resource
 gem 'angularjs-rails-resource', '~> 0.2.5'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
